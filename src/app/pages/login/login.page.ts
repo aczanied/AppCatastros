@@ -55,12 +55,12 @@ private loginServidor(username: string, password: string) {
     this.navCtrl.navigateRoot('inicio', { animated: true });
   },
   error => {
-    if (error === 'Forbidden') {
+    if (error.status === 403) {
       this.ui.presentToast('Usuario o Clave no son correctos');
     } else {
       this.ui.alertaInformativa('No se pudo establecer conexion con el servidor');
     }
-  console.log(error);
+  
   });
 }
 

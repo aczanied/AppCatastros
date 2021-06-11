@@ -34,11 +34,11 @@ onlyNumber($event: any) {
     await alert.present();
   }
 
-  async presentToast( message: string ) {
+  async presentToast( message: string, timer: number = 2000, ) {
     const toast = await this.toastController.create({
       message,
       position: 'top',
-      duration: 1500
+      duration: timer
     });
     toast.present();
   }
