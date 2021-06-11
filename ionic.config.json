@@ -1,5 +1,7 @@
 {
   "name": "CatastrosApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
