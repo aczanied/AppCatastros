@@ -1,0 +1,56 @@
+
+
+<ion-menu contentId="menu-content" content-id="content" menuId="menu-content" side="start" type="overlay">
+
+  <ion-header class="size">
+
+      <ion-img src="../../../assets/img/portada.jpg"></ion-img>
+      <ion-text class="name-menu">
+          {{ currentUser.name }}
+      </ion-text>
+      <ion-text class="name-menu-2">
+          {{ currentUser.email }}
+      </ion-text>
+      <ion-avatar class="image-menu">
+          <!-- <img src="../../../assets/img/user.svg"> -->
+      </ion-avatar>
+
+  </ion-header>
+  <ion-content id="content">
+      <div *ngFor="let p of  pages">
+
+        <hr>
+              <ion-menu-toggle *ngIf="p.url">
+                  <ion-item class="sub-item-class color-gray border-item-2"  [routerLink]="p.url"  routerDirection="root">
+                      <ion-icon slot="start" [name]="p.icon" class="tamanio-icon"></ion-icon>
+                      <ion-label class="margin-icon-2 tamanio-letra">{{ p.title }}</ion-label>
+                  </ion-item>
+              </ion-menu-toggle>
+
+          <ion-item button *ngIf="p.children?.length >0 " (click)="p.open = !p.open" [class.active-parent]="p.open" detail="false" class="color-gray border-item-2">
+              <ion-icon slot="start" [name]="p.icon" class="tamanio-icon"></ion-icon>
+              <ion-icon slot="end" *ngIf="!p.open" name="arrow-forward" class="tamanio-icon"></ion-icon>
+              <ion-icon slot="end" *ngIf="p.open" name="arrow-down" class="tamanio-icon"></ion-icon>
+              <ion-label class="margin-icon">{{ p.title }}</ion-label>
+          </ion-item>
+          <ion-list *ngIf="p.open" class="margin-list">
+              <ion-menu-toggle>
+                  <ion-item class="sub-item-class color-gray border-item-2" *ngFor="let sub of  p.children" [routerLink]="sub.url" routerDirection="root">
+                      <ion-icon slot="start" [name]="sub.icon" class="tamanio-icon"></ion-icon>
+                      <ion-label class="margin-icon-2 tamanio-letra">{{ sub.title }}</ion-label>
+                  </ion-item>
+              </ion-menu-toggle>
+          </ion-list>
+      </div>
+
+
+  </ion-content>
+  <ion-footer>
+      <ion-menu-toggle>
+          <ion-item (click)="salir()" class="color-gray border-item-2 margin-bot">
+              <ion-icon slot="start" name="power-outline" class="tamanio-icon"></ion-icon>
+              <ion-label class="margin-icon"> Salir</ion-label>
+          </ion-item>
+      </ion-menu-toggle>
+  </ion-footer>
+</ion-menu>

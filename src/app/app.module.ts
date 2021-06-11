@@ -8,9 +8,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { Storage } from '@ionic/storage/';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Network } from '@ionic-native/network/ngx';
- 
+
+import { JwtInterceptor } from './_guards/jwt.interceptor';
+import { UnauthorizedInterceptor } from './_guards/unauthorized.interceptor';
+
+import { ComponentesModule } from './pages/componentes/componentes.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,11 +23,24 @@ import { Network } from '@ionic-native/network/ngx';
       HttpClientModule,
       BrowserModule,
       IonicModule.forRoot(),
-      AppRoutingModule],
+      AppRoutingModule,
+      ComponentesModule
+    ],
+   
   providers: [
               Network,
               Storage,
-             { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+             { provide: RouteReuseStrategy,
+               useClass: IonicRouteStrategy 
+             },
+             {provide: HTTP_INTERCEPTORS, 
+              useClass: JwtInterceptor, 
+              multi: true 
+             },
+            { provide: HTTP_INTERCEPTORS,
+              useClass: UnauthorizedInterceptor,
+              multi: true,
+            },
              ],
   bootstrap: [AppComponent],
 })
