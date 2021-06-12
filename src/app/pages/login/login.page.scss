@@ -1,0 +1,40 @@
+ion-content {
+    --background: url('../../../assets/img/background.png') 0 0/100% 100% no-repeat;
+}
+
+.botonIngreso {
+    --border-radius: 10px;
+    font-size: 20px;
+    padding: 5px;
+    text-transform: none;
+    margin-top: 20px;
+}
+
+.cardLogin {
+    border-radius: 50px;
+    box-shadow: none;
+    position: inherit;
+    top: 9px;
+    background-color: transparent;
+    // margin-top: 370px;
+}
+
+.marginItemlogin {
+    margin-top: 50px;
+}
+
+.alertaingreso {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.icono-login {
+    max-width: 50%!important;
+    border: 0;
+    margin: auto;
+    display: block;
+}
+
+.campos-login {
+    margin-top: 150px;
+}
