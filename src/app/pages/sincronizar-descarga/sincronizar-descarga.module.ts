@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InicioPageRoutingModule } from './inicio-routing.module';
+import { SincronizarDescargaPageRoutingModule } from './sincronizar-descarga-routing.module';
 
-import { InicioPage } from './inicio.page';
+import { SincronizarDescargaPage } from './sincronizar-descarga.page';
 import { ComponentesModule } from '../componentes/componentes.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentesModule } from '../componentes/componentes.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule,
+    SincronizarDescargaPageRoutingModule,
     ComponentesModule
   ],
-  declarations: [InicioPage]
+  declarations: [SincronizarDescargaPage]
 })
-export class InicioPageModule {}
+export class SincronizarDescargaPageModule {}
