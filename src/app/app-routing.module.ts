@@ -4,9 +4,10 @@ import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {
-    canActivate: [AuthGuard],
+   // canActivate: [AuthGuard],
     path: '',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  //  loadChildren: () => import('./pages/decidir/decidir.module').then( m => m.DecidirPageModule)
+  loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'login',
@@ -18,9 +19,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/componentes/menu/menu.module').then( m => m.MenuPageModule)
   },
   {
-    canActivate: [AuthGuard],
+   // canActivate: [AuthGuard],
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    //canActivate: [AuthGuard],
+    path: 'decidir',
+    loadChildren: () => import('./pages/decidir/decidir.module').then( m => m.DecidirPageModule)
+  },
+  {
+    path: 'sincronizar-descarga',
+    loadChildren: () => import('./pages/sincronizar-descarga/sincronizar-descarga.module').then( m => m.SincronizarDescargaPageModule)
   }
 ];
 

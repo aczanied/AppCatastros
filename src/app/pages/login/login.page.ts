@@ -50,9 +50,13 @@ public login(fLogin: NgForm) {
 }
 
 private loginServidor(username: string, password: string) {
+
+  this.navCtrl.navigateRoot('decidir', { animated: true });
+  return;
+  
     this.loginService.login(username, password).subscribe(() => {
    // this.menu.currentUser = this.loginService.currentUserValue;
-    this.navCtrl.navigateRoot('inicio', { animated: true });
+    this.navCtrl.navigateRoot('decidir', { animated: true });
   },
   error => {
     if (error.status === 403) {
