@@ -29,9 +29,9 @@
                                         </div>
                                     </div>
                                     <ion-item class="marginItemlogin">
-                                        <ion-icon color="grey" slot="end" class="margin-top-60 margin-left-10 " name="key-outline"></ion-icon>
+                                        <ion-icon color="grey" slot="end" (click)="mostrarClaveFn()" class="margin-top-60 margin-left-10 " [name]="mostrarClave ? 'key-outline' : 'lock-closed-outline'"></ion-icon>
 
-                                        <ion-input class="focusssead" name="password" id="password" type="password" [(ngModel)]="loginUser.password" required #email="ngModel" placeholder="Contraseña">
+                                        <ion-input class="focusssead" name="password" id="password" [type]="mostrarClave ? 'text' : 'password'" [(ngModel)]="loginUser.password" required #email="ngModel" placeholder="Contraseña">
                                         </ion-input>
                                     </ion-item>
                                     <div *ngIf="email.invalid && (email.dirty || email.touched || submitted) " class="alert alert-danger alertaingreso">
@@ -45,7 +45,7 @@
 
 
                             <ion-col size="12" class="campos-login-1 marginButton">
-                                <ion-button class="botonIngreso" shape="round" color="nuevo" size="large" expand="full">
+                                <ion-button class="botonIngreso" shape="round" color="nuevo" type="submit" size="large" expand="full">
                                     Ingresar
                                 </ion-button>
                             </ion-col>

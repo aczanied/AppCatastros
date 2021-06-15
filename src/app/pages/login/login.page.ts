@@ -19,8 +19,11 @@ export class LoginPage implements OnInit {
     email: '',
     password: ''
   };
- public submitted = false;
+
+  // Variables
+  public submitted = false;
   public fLogin: FormGroup;
+  public mostrarClave: boolean = false;
   constructor(private loginService: AuthService,
               private navCtrl: NavController,
               private router: Router,
@@ -66,6 +69,10 @@ private loginServidor(username: string, password: string) {
     }
   
   });
+}
+
+public mostrarClaveFn() {
+this.mostrarClave = !this.mostrarClave;
 }
 
 

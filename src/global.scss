@@ -36,3 +36,55 @@
 * {
     font-family: 'Mollen', sans-serif;
 }
+
+.botonSincronizarDescarga {
+    --border-radius: 10px;
+    font-size: 20px;
+    padding: 5px;
+    text-transform: none;
+    margin-top: 20px;
+}
+
+.ion-padding {
+    padding: 0px 0px 0px 20px;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.contador {
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px 0px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+    background-color: white;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.imageDescarga {
+    display: flex;
+    justify-content: space-around;
+}
+
+.centerImage {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    margin-top: 30px;
+}
+
+.grey {
+    background-color: #f2f2f267;
+}
+
+.backgroundColor {
+    background-color: #f9f9f9a9;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}

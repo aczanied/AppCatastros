@@ -1,99 +1,126 @@
 <app-menu></app-menu>
 <ion-header>
-  <ion-toolbar>
-    <ion-title>sincronizarDescarga</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Sincronizar Descarga</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 
 
-<ion-content >
-<div *ngIf="step === 1">
-  <ion-card>
-    <ion-card-content>
-     
-    <ion-row>
-      <ion-col size="3">
-        <h1> 0 </h1>
-      </ion-col>
-      <ion-col>
-       <h1> no sincronizado </h1>
-      </ion-col>
-    </ion-row>
-    </ion-card-content>
-  </ion-card>
-  <ion-row>
-    <ion-col size="1">
-    </ion-col>
-    <ion-col>
-     <ion-button (click)="sicronizar()" expand="block" color="primary"  shape="round">
-       Sincronizar
-     </ion-button>
-    </ion-col>
-    <ion-col size="1">
-    </ion-col>
-  </ion-row>
-</div>
+<ion-content>
+    <div class="backgroundColor">
 
-<div *ngIf="step === 2">
-  <ion-card>
-    <ion-card-content>
-      <ion-row>
-        <ion-col size="1">
-        </ion-col>
-        <ion-col>
-         <h1>Descargando los datos </h1>
-        </ion-col>
-        <ion-col size="1">
-        </ion-col>
-        
-      </ion-row>
-      <ion-row>
-        <ion-col size="1">
-        </ion-col>
-        <ion-col>
-          <ion-button  expand="block" color="primary"  shape="round">
-             es una barra de progreso
-          </ion-button>
-          <h1 class="ion-text-center"> 50 % </h1>
-        </ion-col>
-        <ion-col size="1">
-        </ion-col>
-      </ion-row>
+        <div *ngIf="step === 1">
+            <div class="ion-padding">
+                <h1> Hola <span>"nombre_usuario"</span> </h1>
+            </div>
 
-    <ion-row>
-      <ion-col size="12">
-        <h2> Detalle de Progreso </h2>
-      </ion-col>
-      <ion-col size="12">
-     <ion-grid fixed>
-       <ion-row>
-         <ion-col size="2"> <ion-icon name="caret-down-outline"></ion-icon> </ion-col>
-         <ion-col > Propietarios </ion-col>
-         <ion-col size="2"> <ion-badge color="success"> OK </ion-badge>  </ion-col>
-       </ion-row>
-       <ion-row>
-        <ion-col size="2"> <ion-icon name="caret-down-outline"></ion-icon> </ion-col>
-        <ion-col > Propietarios </ion-col>
-        <ion-col size="2"> <ion-badge color="success"> OK </ion-badge>  </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="2"> <ion-icon name="caret-down-outline"></ion-icon> </ion-col>
-        <ion-col > Propietarios </ion-col>
-        <ion-col size="2"> <ion-badge color="danger"> FALLO </ion-badge>  </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="2"> <ion-icon name="caret-down-outline"></ion-icon> </ion-col>
-        <ion-col > Propietarios </ion-col>
-        <ion-col size="2"> <ion-badge  color="success"> OK </ion-badge>  </ion-col>
-      </ion-row>
-     </ion-grid>
-      </ion-col>
-    </ion-row>
-    </ion-card-content>
-  </ion-card>
+            <ion-card class="grey">
+                <ion-card-content>
 
-</div>
+                    <ion-row>
+                        <ion-col size="3" class="contador">
+                            <h1 class="justify center"> 0 </h1>
+                        </ion-col>
+                        <ion-col>
+                            <h1 class="justify"> Al parecer aún no se han sincronizado los datos. </h1>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+            <ion-col size="12" class="imageDescarga">
+                <img class="centerImage" src="../../../assets/img/descargar.svg">
+            </ion-col>
+            <ion-row>
+                <ion-col size="1">
+                </ion-col>
+                <ion-col>
+                    <ion-button class="botonSincronizarDescarga" (click)="sicronizar()" shape="round" color="nuevo" type="submit" size="large" expand="full">
+                        Sincronizar
+                    </ion-button>
+                </ion-col>
+                <ion-col size="1">
+                </ion-col>
+            </ion-row>
 
+        </div>
+
+        <div *ngIf="step === 2">
+            <ion-card>
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="1">
+                        </ion-col>
+                        <ion-col>
+                            <h1>Descargando Datos </h1>
+                        </ion-col>
+                        <ion-col size="1">
+                        </ion-col>
+
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size="1">
+                        </ion-col>
+                        <ion-col>
+                            <ion-button expand="block" color="primary" shape="round">
+                                es una barra de progreso
+                            </ion-button>
+                            <h1 class="ion-text-center"> 50 % </h1>
+                        </ion-col>
+                        <ion-col size="1">
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col size="12">
+                            <h2> Detalle de Progreso </h2>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-grid fixed>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="success"> OK </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="success"> OK </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="danger"> FALLO </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="success"> OK </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+        </div>
+
+    </div>
 
 </ion-content>
