@@ -69,8 +69,12 @@ export class SincronizarDescargaPage implements OnInit {
 
   sicronizar() {
     this.startLoad();
-    this.animateCard();
-   // this.step = 2;
+    this.step = 1.5;
+    setTimeout(()=>{                     
+      this.step =  2;
+ }, 500);
+  //  this.step =  2;
+
    
   }
 
