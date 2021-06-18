@@ -52,8 +52,55 @@
     align-items: center;
 }
 
+.textCenter {
+    text-align: center;
+}
+
 .ion-padding2 {
     padding: 0px 0px 0px 20px;
+}
+
+.sinMargenTop {
+    margin-top: 0px!important;
+}
+
+@media all and (max-width: 400px) {
+    .cardDecisionUr {
+        padding: 10% 45% 10% 0%!important;
+        display: inline-flex;
+        background-image: url('./assets/img/2p.png')!important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
+        border-radius: 12px;
+    }
+    .cardDecision {
+        padding: 10% 45% 10% 0%!important;
+        display: inline-flex;
+        background-image: url('./assets/img/1p.png')!important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
+        border-radius: 12px;
+    }
+    .grey {
+        background-color: #fdfbfb;
+        box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
+        padding: 0.5em 0px!important;
+        border-radius: 20px;
+    }
+    h2.tamanioBox {
+        font-size: 1rem!important;
+    }
+    h3.tamanioNumeroBox {
+        font-size: 1rem!important;
+    }
+    .centerImage {
+        display: flex;
+        align-items: center;
+        max-width: 60%!important;
+        margin-top: 10px!important;
+    }
 }
 
 
@@ -71,10 +118,12 @@
 }
 
 .cardDecisionUr {
-    padding: 20% 37% 20% 0%;
+    padding: 20% 45% 20% 0%;
     display: inline-flex;
     background-image: url('./assets/img/2.png');
-    background-size: 100%;
+    max-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
     box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
     border-radius: 12px;
 }
@@ -82,14 +131,20 @@
 .cardDecision {
     padding: 20% 45% 20% 0%;
     display: inline-flex;
-    background-image: url('./assets/img/1.png');
-    background-size: 100%;
+    background-image: url('./assets/img/1g.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
     border-radius: 12px;
 }
 
 .textoDecision {
     font-size: 2.3rem;
+    color: #46464a!important;
+}
+
+.textoDecisionUr {
+    font-size: 1.7rem;
     color: #46464a!important;
 }
 
@@ -100,13 +155,13 @@
     background-color: #f4f5f6;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .grey {
     background-color: #fdfbfb;
     box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
-    padding: 2rem 0px;
+    padding: 1.5rem 0px;
     border-radius: 20px;
 }
 
@@ -115,6 +170,7 @@
     box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
     // padding: 2rem 0px;
     border-radius: 20px;
+    margin-top: 0px!important;
 }
 
 .greyText {
@@ -138,8 +194,8 @@
 .centerImage {
     display: flex;
     align-items: center;
-    max-width: 80%;
-    margin-top: 30px;
+    max-width: 75%;
+    margin-top: 10px;
 }
 
 .imageDescargaNoData {
@@ -161,11 +217,11 @@
 }
 
 .tamanioBox {
-    font-size: 1.5rem!important;
+    font-size: 1.3rem!important;
 }
 
 .tamanioNumeroBox {
-    font-size: 3rem!important;
+    font-size: 2.5rem!important;
 }
 
 .botonSincronizarDescarga {
@@ -174,6 +230,10 @@
     padding: 5px;
     text-transform: none;
     margin-top: 20px;
+}
+
+.tamanioTexto {
+    font-size: 1.2rem;
 }
 
 
