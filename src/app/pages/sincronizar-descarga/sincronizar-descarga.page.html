@@ -66,10 +66,10 @@
                         <ion-col size="1">
                         </ion-col>
                         <ion-col>
-                            <ion-button expand="block" color="primary" shape="round">
+                               <ion-button expand="block" color="primary" shape="round">
                                 es una barra de progreso
                             </ion-button>
-                            <h1 class="ion-text-center"> 50 % </h1>
+                            <h1 class="ion-text-center"> {{ progressBar }} % </h1>
                         </ion-col>
                         <ion-col size="1">
                         </ion-col>
@@ -80,7 +80,7 @@
                             <h2> Detalle de Progreso </h2>
                         </ion-col>
                         <ion-col size="12">
-                            <ion-grid fixed>
+                            <ion-grid fixed *ngFor="">
                                 <ion-row>
                                     <ion-col size="2">
                                         <ion-icon name="caret-down-outline"></ion-icon>
