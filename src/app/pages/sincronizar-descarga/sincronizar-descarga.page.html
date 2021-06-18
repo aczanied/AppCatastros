@@ -21,10 +21,10 @@
 
                     <ion-row>
                         <ion-col size="3" class="contador">
-                            <h1 class="justify center"> 0 </h1>
+                            <h1 class="justify center tamanioNumeroBox greyText"> 0 </h1>
                         </ion-col>
                         <ion-col>
-                            <h2> Al parecer aún no se han sincronizado los datos. </h2>
+                            <h2 class="tamanioBox greyText"> Al parecer aún no se han sincronizado los datos. </h2>
                         </ion-col>
                     </ion-row>
                 </ion-card-content>
@@ -49,7 +49,7 @@
         </div>
 
 
-        <div *ngIf="step === 2" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
+        <!-- <div *ngIf="step === 2" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
             <ion-card>
                 <ion-card-content>
                     <ion-row>
@@ -123,8 +123,106 @@
                 </ion-card-content>
             </ion-card>
 
-        </div>
+        </div> -->
 
+        <!-- <div *ngIf="step === 2" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
+            <div class="ion-padding">
+                <h1 class="greyText">
+                    Los datos se sincronizaron correctamente.
+                </h1>
+            </div>
+            <ion-col size="12" class="imageDescargaVolver">
+                <img class="centerImage" src="../../../assets/img/sync3.svg">
+            </ion-col>
+            <ion-row>
+                <ion-col size="1">
+                </ion-col>
+                <ion-col>
+                    <ion-button class="botonSincronizarDescarga" shape="round" color="nuevo" type="submit" size="large" expand="full">
+
+                        Volver a sincronizar
+                        <ion-icon name="reload" slot="end" #loadingIcon></ion-icon>
+                    </ion-button>
+                </ion-col>
+                <ion-col size="1">
+                </ion-col>
+            </ion-row>
+
+        </div> -->
+
+        <div *ngIf="step === 2" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
+            <div class="ion-padding">
+                <h1 class="greyText">
+                    Los siguientes datos no se sincronizaron correctamente.
+                </h1>
+            </div>
+            <ion-card class="greyReintentar">
+                <ion-card-content>
+
+
+
+                    <ion-row>
+
+                        <ion-col size="12">
+                            <ion-grid fixed>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="danger"> FALLO </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="danger"> FALLO </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="danger"> FALLO </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="2">
+                                        <ion-icon name="caret-down-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col size="2">
+                                        <ion-badge color="danger"> FALLO </ion-badge>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-col>
+                    </ion-row>
+                    <ion-col size="12" class="imageDescargaNoData">
+                        <img class="centerImageNoData" src="../../../assets/img/notfound.svg">
+                    </ion-col>
+                </ion-card-content>
+            </ion-card>
+            <ion-row>
+                <ion-col size="1">
+                </ion-col>
+                <ion-col>
+                    <ion-button class="botonSincronizarDescarga" shape="round" color="nuevo" type="submit" size="large" expand="full">
+
+                        Reintentar
+                        <ion-icon name="reload" slot="end" #loadingIcon></ion-icon>
+                    </ion-button>
+                </ion-col>
+                <ion-col size="1">
+                </ion-col>
+            </ion-row>
+        </div>
     </div>
 
 </ion-content>

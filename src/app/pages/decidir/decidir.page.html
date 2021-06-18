@@ -1,3 +1,12 @@
+<ion-header>
+    <ion-toolbar color="blueone">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <!-- <ion-title class="font-size-18"> Descargar I</ion-title> -->
+    </ion-toolbar>
+</ion-header>
+
 <ion-content class="backgroundDecision">
     <div class="ion-padding">
         <h1>
@@ -17,9 +26,9 @@
         </ion-col>
 
         <ion-col size="12" class="icono-login2">
-            <ion-card (click)="irUrbano()" color="primary" expand="block" fill="clear" shape="round" class="cardDecisionUr">
+            <ion-card [disabled]='true' (click)="irUrbano()" color="primary" expand="block" fill="clear" shape="round" class="cardDecisionUr">
                 <ion-card-header>
-                    <!-- [disabled]='true' -->
+
                     <ion-card-title class="textoDecision"> Urbano</ion-card-title>
                 </ion-card-header>
 
