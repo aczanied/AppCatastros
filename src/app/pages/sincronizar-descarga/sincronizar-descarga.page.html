@@ -24,13 +24,14 @@
                             <h1 class="justify center tamanioNumeroBox greyText"> 0 </h1>
                         </ion-col>
                         <ion-col>
-                            <h2 class="tamanioBox greyText"> Al parecer aún no se han sincronizado los datos. </h2>
+                            <!-- -->
+                            <h3  class="tamanioBox greyText"> Al parecer aún no se han sincronizado los datos. </h3>
                         </ion-col>
                     </ion-row>
                 </ion-card-content>
             </ion-card>
             <ion-col size="12" class="imageDescarga">
-                <img class="centerImage" src="../../../assets/img/descargar.svg">
+                <img class="centerImage" height="200" src="../../../assets/img/descargar.svg">
             </ion-col>
             <ion-row>
                 <ion-col size="1">
@@ -49,7 +50,7 @@
         </div>
 
 
-        <!-- <div *ngIf="step === 2" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
+         <div *ngIf="step === 2 || step === 2.5" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
             <ion-card>
                 <ion-card-content>
                     <ion-row>
@@ -66,10 +67,8 @@
                         <ion-col size="1">
                         </ion-col>
                         <ion-col>
-                            <ion-button expand="block" color="primary" shape="round">
-                                es una barra de progreso
-                            </ion-button>
-                            <h1 class="ion-text-center"> 50 % </h1>
+                            <ion-progress-bar [value]="progressBar" ></ion-progress-bar>
+                            <h1 class="ion-text-center"> {{ progressBar * 100 | number: '0.0-0' }} % </h1>
                         </ion-col>
                         <ion-col size="1">
                         </ion-col>
@@ -80,41 +79,14 @@
                             <h2> Detalle de Progreso </h2>
                         </ion-col>
                         <ion-col size="12">
-                            <ion-grid fixed>
+                            <ion-grid fixed *ngFor="let item of listaSincronizado">
                                 <ion-row>
                                     <ion-col size="2">
                                         <ion-icon name="caret-down-outline"></ion-icon>
                                     </ion-col>
-                                    <ion-col> Propietarios </ion-col>
+                                    <ion-col> {{ item.message}} </ion-col>
                                     <ion-col size="2">
-                                        <ion-badge color="success"> OK </ion-badge>
-                                    </ion-col>
-                                </ion-row>
-                                <ion-row>
-                                    <ion-col size="2">
-                                        <ion-icon name="caret-down-outline"></ion-icon>
-                                    </ion-col>
-                                    <ion-col> Propietarios </ion-col>
-                                    <ion-col size="2">
-                                        <ion-badge color="success"> OK </ion-badge>
-                                    </ion-col>
-                                </ion-row>
-                                <ion-row>
-                                    <ion-col size="2">
-                                        <ion-icon name="caret-down-outline"></ion-icon>
-                                    </ion-col>
-                                    <ion-col> Propietarios </ion-col>
-                                    <ion-col size="2">
-                                        <ion-badge color="danger"> FALLO </ion-badge>
-                                    </ion-col>
-                                </ion-row>
-                                <ion-row>
-                                    <ion-col size="2">
-                                        <ion-icon name="caret-down-outline"></ion-icon>
-                                    </ion-col>
-                                    <ion-col> Propietarios </ion-col>
-                                    <ion-col size="2">
-                                        <ion-badge color="success"> OK </ion-badge>
+                                        <ion-badge [color]="item.success === true ? 'success' : 'danger'"> {{item.success === true ? 'OK' : 'FALLO' }} </ion-badge>
                                     </ion-col>
                                 </ion-row>
                             </ion-grid>
@@ -123,22 +95,22 @@
                 </ion-card-content>
             </ion-card>
 
-        </div> -->
+        </div> 
 
-        <!-- <div *ngIf="step === 2" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
+        <div *ngIf="step === 3 || step === 3.5" [class]="step == 3 ? 'fade-in' : 'fade-out' ">
             <div class="ion-padding">
                 <h1 class="greyText">
                     Los datos se sincronizaron correctamente.
                 </h1>
             </div>
             <ion-col size="12" class="imageDescargaVolver">
-                <img class="centerImage" src="../../../assets/img/sync3.svg">
+                <img class="centerImage"  height="200" src="../../../assets/img/sync3.svg">
             </ion-col>
             <ion-row>
                 <ion-col size="1">
                 </ion-col>
                 <ion-col>
-                    <ion-button class="botonSincronizarDescarga" shape="round" color="nuevo" type="submit" size="large" expand="full">
+                    <ion-button class="botonSincronizarDescarga" (click)="sicronizar()"  shape="round" color="nuevo" type="submit" size="large" expand="full">
 
                         Volver a sincronizar
                         <ion-icon name="reload" slot="end" #loadingIcon></ion-icon>
@@ -148,9 +120,9 @@
                 </ion-col>
             </ion-row>
 
-        </div> -->
+        </div> 
 
-        <div *ngIf="step === 2" [class]="step == 2 ? 'fade-in' : 'fade-out' ">
+        <div *ngIf="step === 4 || step === 4.5" [class]="step == 4 ? 'fade-in' : 'fade-out' ">
             <div class="ion-padding">
                 <h1 class="greyText tamanioTexto">
                     Los siguientes datos no se sincronizaron correctamente.
@@ -205,8 +177,13 @@
                         </ion-col>
                     </ion-row>
                     <ion-col size="12" class="imageDescargaNoData">
-                        <img class="centerImageNoData" src="../../../assets/img/notfound.svg">
+                        <img class="centerImageNoData"  src="../../../assets/img/notfound.svg">
                     </ion-col>
+                    <ion-button class="botonSincronizarDescarga" (click)="sicronizar()"  shape="round" color="nuevo" type="submit" size="large" expand="full">
+
+                        Volver a sincronizar
+                        <ion-icon name="reload" slot="end" #loadingIcon></ion-icon>
+                    </ion-button>
                 </ion-card-content>
             </ion-card>
             <ion-row>

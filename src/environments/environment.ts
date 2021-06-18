@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://12e08f9dc416.ngrok.io/api'
+  // Siempre finalizar el API CON /
+  apiUrl: 'https://12e08f9dc416.ngrok.io/api/' //'https://12e08f9dc416.ngrok.io/api'
 };
 
 /*

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tablas } from 'src/app/_models';
+import { diccionario, LocalData } from 'src/app/_models';
 import { LocaldbService } from 'src/app/_services/helpers/localdb.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { LocaldbService } from 'src/app/_services/helpers/localdb.service';
 export class DecidirPage implements OnInit {
 
   // Variables
-  private dbo: Tablas = new Tablas();
+  private dbo: LocalData[] = diccionario;
 
   constructor( private router: Router, 
                private db: LocaldbService) { }
@@ -23,7 +23,9 @@ export class DecidirPage implements OnInit {
 
   public async irRural() {
 
-   let data = await this.db.buscarPrimerElemento(this.dbo.contadorRural).then( data => { return data;});
+    const tabla = this.dbo.find(c => c._id === 'ContadorRural').tablaBase;
+    debugger;
+   let data = await this.db.buscarPrimerElemento(tabla).then( data => { return data;});
    
    if (data === null) {
     this.router.navigate(['/sincronizar-descarga']);

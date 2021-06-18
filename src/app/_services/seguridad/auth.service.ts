@@ -36,7 +36,7 @@ public get currentUserValue(): Usuarios {
 
 
 login(username: string, password: string) {
-  return this.http.post<any>(`${environment.apiUrl}/loginmobile`, { username, password })
+  return this.http.post<any>(`${environment.apiUrl}loginmobile`, { username, password })
       .pipe(map(user => {
           console.log(user);
           // store user details and jwt token in local storage to keep user logged in between page refreshes

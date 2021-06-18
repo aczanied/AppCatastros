@@ -31,7 +31,8 @@ export class LoginPage implements OnInit {
              // private menu: MenuComponent
              ) {
                 if (this.loginService.currentUserValue) {
-                this.router.navigate(['/inicio']);
+               // this.router.navigate(['/inicio']);
+                this.router.navigate(['/decidir']);
                 }
               }
 
@@ -55,7 +56,7 @@ public login(fLogin: NgForm) {
 private loginServidor(username: string, password: string) {
 
   this.navCtrl.navigateRoot('decidir', { animated: true });
-  return;
+ 
   
     this.loginService.login(username, password).subscribe(() => {
    // this.menu.currentUser = this.loginService.currentUserValue;

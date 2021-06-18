@@ -9,8 +9,64 @@ export class Contador {
     sincronizado: boolean = false;
     fechaSincronizado: Date = new Date;
 }
+export class Combo {
+   // _id: string;
+    id: number;
+    _name: string;
+  }
 
-export class Tablas {
-    contadorRural: string = 'contadorRural';
-
+export class LocalData {
+    _id: string = '';
+    ruta: string = '';
+    api: boolean = false;
+    tablaBase: string = '';
 }
+
+// Configurar el diccionario, una vez agregados se recomienda no alterar los _id
+// Es casi seguro que tenga que reconfigurarlos al interior del codigo fuente
+export const diccionario: LocalData[] = [
+    {
+        _id: 'ContadorRural', // No alterar
+        tablaBase: 'contador_rural',
+        api: false,
+        ruta: '',
+    },
+    // Seccion de Combos
+    {
+        _id: 'Entrepisos', // No alterar
+        tablaBase: 'entrepisos',
+        api: true,
+        ruta: 'catastro-urbano/construccion/estructuras/entrepisos',
+     },
+     {
+        _id: 'Columnas', // No alterar
+        tablaBase: 'columnas',
+        api: true,
+        ruta: 'catastro-urbano/construccion/estructuras/columnas',
+     },
+     {
+        _id: 'Uso Suelo', // No alterar
+        tablaBase: 'uso-suelo',
+        api: true,
+        ruta: 'catastro-urbano/datos-predio/informacion-general/uso-suelo',
+     },
+    {
+        _id: 'Cubiertas', // No alterar
+        tablaBase: 'cubiertas',
+        api: true,
+        ruta: 'catastro-urbano/construccion/acabados/cubiertas',
+     },
+     {
+        _id: 'Parroquias', // No alterar
+        tablaBase: 'parroquias',
+        api: true,
+        ruta: 'catastro-urbano/parroquias',
+     },
+    {
+       _id: 'InformacionPropietario', // No alterar
+       tablaBase: 'informacion_propietario',
+       api: false,
+        ruta: 'catastro-urbano/informacion-propietario',
+    }];
+
+
