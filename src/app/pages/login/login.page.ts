@@ -31,7 +31,8 @@ export class LoginPage implements OnInit {
              // private menu: MenuComponent
              ) {
                 if (this.loginService.currentUserValue) {
-                this.router.navigate(['/inicio']);
+               // this.router.navigate(['/inicio']);
+                this.router.navigate(['/decidir']);
                 }
               }
 

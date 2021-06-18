@@ -10,7 +10,7 @@ export class Contador {
     fechaSincronizado: Date = new Date;
 }
 export class Combo {
-    _id: string;
+   // _id: string;
     id: number;
     _name: string;
   }
@@ -32,8 +32,31 @@ export const diccionario: LocalData[] = [
         ruta: '',
     },
     // Seccion de Combos
-    
     {
+        _id: 'Entrepisos', // No alterar
+        tablaBase: 'entrepisos',
+        api: true,
+        ruta: 'catastro-urbano/construccion/estructuras/entrepisos',
+     },
+     {
+        _id: 'Columnas', // No alterar
+        tablaBase: 'columnas',
+        api: true,
+        ruta: 'catastro-urbano/construccion/estructuras/columnas',
+     },
+     {
+        _id: 'Uso Suelo', // No alterar
+        tablaBase: 'uso-suelo',
+        api: true,
+        ruta: 'catastro-urbano/datos-predio/informacion-general/uso-suelo',
+     },
+    {
+        _id: 'Cubiertas', // No alterar
+        tablaBase: 'cubiertas',
+        api: true,
+        ruta: 'catastro-urbano/construccion/acabados/cubiertas',
+     },
+     {
         _id: 'Parroquias', // No alterar
         tablaBase: 'parroquias',
         api: true,

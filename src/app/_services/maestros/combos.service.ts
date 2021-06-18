@@ -24,7 +24,7 @@ export class CombosService {
     /**
     * Obtiene los datos necesarios para armar un selector.
     */
-    public obtenerCombo(ruta: string, tblBase: string ): Observable<any>  {
+    public obtenerCombo(ruta: string, tblBase: string ) {
     
         const url =  `${environment.apiUrl}${ruta}`;
 
@@ -35,27 +35,35 @@ export class CombosService {
         } else {
         // De lo contrario obtiene la data del API
         // Y la almacena localmente
-        return this.http.get(url).pipe(
-            map((data: Combo[]) => {
+       return this.http.get(url).pipe(
+            map(async (data: Combo[]) => {
 
-            data.forEach( async item => {
+              let listaData:  Combo[] = [];
+         const dat = await data.forEach( async item => {
              
-              let el: Combo = { ...  {
-                _id : item.id.toString(),
-                id : item.id,
-                _name : item._name
-              }};
-              console.log(el);
-             const a = await this.db.crear({ ...el }, tblBase).then( c => {
-                return c;
-              });
-              console.log('respuesta',a );
+              let el: Combo = { 
+                              id : item.id,
+                              _name : item._name
+                            };
+              listaData.push(el);
             });
-          
-           
-            return true;
-            })
-        );
+
+            const el = {
+              _id: tblBase,
+              data: listaData
+            };
+
+           const result = await this.db.crear({ ...el }, tblBase).then(c => {
+              return true;
+            }).catch( error => {
+              return false;
+            });
+            
+            return result;
+
+            }));
+         
+        
         }
 
     }

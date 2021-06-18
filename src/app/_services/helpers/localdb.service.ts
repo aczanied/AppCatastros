@@ -21,9 +21,10 @@ export class LocaldbService {
    * @return {*}  {Promise<any>}
    * @memberof LocaldbService
    */
-  public crear(objeto: any, tabla: string): Promise<any> {
+  public  crear(objeto: any, tabla: string): Promise<any> {
 
-    return this.db.get(tabla).then((items: any[]) => {
+    return  this.db.get(tabla).then( (items: any[]) => {
+     
       if (items) {
         // Buscar Objeto en Base Local
         var idx = items.findIndex( c => c._id === objeto._id);
@@ -35,10 +36,9 @@ export class LocaldbService {
           // De lo contrario se Agrega
           items.push(objeto);
         }
-        
-        return this.db.set(tabla, items);
+         this.db.set(tabla, items);
       } else {
-        return this.db.set(tabla, [objeto]);
+         this.db.set(tabla, [objeto]);
       }
     });
   }
