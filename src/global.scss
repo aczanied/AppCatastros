@@ -1,4 +1,4 @@
-    /*
+/*
  * App Global CSS
  * ----------------------------------------------------------------------------
  * Put style rules here that you want to apply globally. These styles are for
@@ -8,219 +8,279 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
-    /* Core CSS required for Ionic components to work properly */
-    
-    @import "~@ionic/angular/css/core.css";
-    /* Basic CSS for apps built with Ionic */
-    
-    @import "~@ionic/angular/css/normalize.css";
-    @import "~@ionic/angular/css/structure.css";
-    @import "~@ionic/angular/css/typography.css";
-    @import '~@ionic/angular/css/display.css';
-    /* Optional CSS utils that can be commented out */
-    
-    @import "~@ionic/angular/css/padding.css";
-    @import "~@ionic/angular/css/float-elements.css";
-    @import "~@ionic/angular/css/text-alignment.css";
-    @import "~@ionic/angular/css/text-transformation.css";
-    @import "~@ionic/angular/css/flex-utils.css";
-    @font-face {
-        font-family: "Mollen";
-        src: url("../src/assets/fonts/mollen/MollenPersonalUse-Bold.otf") format("woff");
+
+
+/* Core CSS required for Ionic components to work properly */
+
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* Fuentes */
+
+@font-face {
+    font-family: "Mollen";
+    src: url("../src/assets/fonts/mollen/MollenPersonalUse-Bold.otf") format("woff");
+}
+
+* {
+    font-family: 'Mollen', sans-serif;
+}
+
+
+/* Globales */
+
+.justify {
+    text-align: justify;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.ion-padding2 {
+    padding: 0px 0px 0px 20px;
+}
+
+
+/* Pantalla Decision */
+
+.backgroundDecision {
+    --background: #f4f5f6!important;
+}
+
+.icono-login2 {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.cardDecisionUr {
+    padding: 20% 37% 20% 0%;
+    display: inline-flex;
+    background-image: url('./assets/img/2.png');
+    background-size: 100%;
+    box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
+    border-radius: 12px;
+}
+
+.cardDecision {
+    padding: 20% 45% 20% 0%;
+    display: inline-flex;
+    background-image: url('./assets/img/1.png');
+    background-size: 100%;
+    box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
+    border-radius: 12px;
+}
+
+.textoDecision {
+    font-size: 2.3rem;
+    color: #46464a!important;
+}
+
+
+/* Pantalla Sincronizar */
+
+.backgroundColor {
+    background-color: #f4f5f6;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.grey {
+    background-color: #fdfbfb;
+    box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
+    padding: 2rem 0px;
+    border-radius: 20px;
+}
+
+.greyReintentar {
+    background-color: #fdfbfb;
+    box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
+    // padding: 2rem 0px;
+    border-radius: 20px;
+}
+
+.greyText {
+    color: #797979!important;
+    text-align: center;
+}
+
+.imageDescarga {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+.centerImageNoData {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    margin-top: 10px;
+}
+
+.centerImage {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    margin-top: 30px;
+}
+
+.imageDescargaNoData {
+    display: flex;
+    justify-content: space-around;
+    // padding: 0.3rem 0rem 2rem 0rem;
+}
+
+.imageDescargaVolver {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0rem 5rem 0rem;
+}
+
+.contador {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+}
+
+.tamanioBox {
+    font-size: 1.5rem!important;
+}
+
+.tamanioNumeroBox {
+    font-size: 3rem!important;
+}
+
+.botonSincronizarDescarga {
+    --border-radius: 10px;
+    font-size: 20px;
+    padding: 5px;
+    text-transform: none;
+    margin-top: 20px;
+}
+
+
+/* Efectos */
+
+.fade-in {
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-    
-    * {
-        font-family: 'Mollen', sans-serif;
+    100% {
+        opacity: 1;
     }
-    
-    .botonSincronizarDescarga {
-        --border-radius: 10px;
-        font-size: 20px;
-        padding: 5px;
-        text-transform: none;
-        margin-top: 20px;
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-    
-    .ion-padding2 {
-        padding: 0px 0px 0px 20px;
+    100% {
+        opacity: 1;
     }
-    
-    .justify {
-        text-align: justify;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-    
-    .contador {
-        box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px 0px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
-        display: flex;
-        justify-content: space-around;
-        margin-right: 10px;
-        background-color: white;
+    100% {
+        opacity: 1;
     }
-    
-    .center {
-        display: flex;
-        align-items: center;
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-    
-    .imageDescarga {
-        display: flex;
-        justify-content: space-around;
+    100% {
+        opacity: 1;
     }
-    
-    .centerImage {
-        display: flex;
-        align-items: center;
-        max-width: 80%;
-        margin-top: 30px;
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-    
-    .grey {
-        background-color: #f2f2f267;
+    100% {
+        opacity: 1;
     }
-    
-    .backgroundColor {
-        background-color: #f9f9f9a9;
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
+}
+
+.fade-out {
+    animation: fadeOut ease 0.5s;
+    -webkit-animation: fadeOut ease 0.5s;
+    -moz-animation: fadeOut ease 0.5s;
+    -o-animation: fadeOut ease 0.5s;
+    -ms-animation: fadeOut ease 0.5s;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
     }
-    
-    .cardDecision {
-        padding: 5% 60% 5% 0%;
-        display: inline-flex;
-        background-image: url('./assets/img/1.png');
-        background-size: 100%;
-        box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
-        border-radius: 12px;
+    100% {
+        opacity: 0;
     }
-    
-    .cardDecisionUr {
-        padding: 5% 51% 5% 0%;
-        display: inline-flex;
-        background-image: url('./assets/img/2.png');
-        background-size: 100%;
-        box-shadow: 0 10px 15px 0 rgb(0 79 88 / 10%), 0 -1px 6px 0 rgb(0 79 88 / 5%);
-        border-radius: 12px;
+}
+
+@-moz-keyframes fadeOut {
+    0% {
+        opacity: 1;
     }
-    
-    .icono-login2 {
-        display: flex;
-        flex-wrap: nowrap;
-        align-content: space-around;
-        justify-content: space-around;
+    100% {
+        opacity: 0;
     }
-    
-    .textoDecision {
-        font-size: 2.3rem;
-        color: #46464a!important;
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
     }
-    
-    .backgroundDecision {
-        --background: #f4f5f6!important;
+    100% {
+        opacity: 0;
     }
-    
-    .fade-in {
-        animation: fadeIn ease 1s;
-        -webkit-animation: fadeIn ease 1s;
-        -moz-animation: fadeIn ease 1s;
-        -o-animation: fadeIn ease 1s;
-        -ms-animation: fadeIn ease 1s;
+}
+
+@-o-keyframes fadeOut {
+    0% {
+        opacity: 1;
     }
-    
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    100% {
+        opacity: 0;
     }
-    
-    @-moz-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+}
+
+@-ms-keyframes fadeOut {
+    0% {
+        opacity: 1;
     }
-    
-    @-webkit-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    100% {
+        opacity: 0;
     }
-    
-    @-o-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-    
-    @-ms-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-    
-    .fade-out {
-        animation: fadeOut ease 0.5s;
-        -webkit-animation: fadeOut ease 0.5s;
-        -moz-animation: fadeOut ease 0.5s;
-        -o-animation: fadeOut ease 0.5s;
-        -ms-animation: fadeOut ease 0.5s;
-    }
-    
-    @keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    @-moz-keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    @-webkit-keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    @-o-keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    @-ms-keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
+}
