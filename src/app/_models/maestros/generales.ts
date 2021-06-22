@@ -32,10 +32,17 @@ export const diccionario: LocalData[] = [
         tablaBase: 'contador_rural',
         api: false,
         ruta: '',
-        esUrbano: true,
-        esRural: false,
+        esUrbano: false,
+        esRural: true,
     },
-    
+    {
+      _id: 'ContadorUrbano', // No alterar
+      tablaBase: 'contador_urbano',
+      api: false,
+      ruta: '',
+      esUrbano: true,
+      esRural: false,
+  },
     // Seccion de Combos
     // 1.  Sincronizar Combo Informacion Basica
      {

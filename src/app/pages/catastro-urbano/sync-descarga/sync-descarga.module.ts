@@ -17,6 +17,9 @@ import { ComponentesModule } from '../../componentes/componentes.module';
     SyncDescargaPageRoutingModule,
     ComponentesModule
   ],
+  providers: [
+    ComponentesModule,
+  ],
   declarations: [SyncDescargaPage]
 })
 export class SyncDescargaPageModule {}

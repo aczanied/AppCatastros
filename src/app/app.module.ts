@@ -13,8 +13,10 @@ import { Network } from '@ionic-native/network/ngx';
 
 import { JwtInterceptor } from './_guards/jwt.interceptor';
 import { UnauthorizedInterceptor } from './_guards/unauthorized.interceptor';
+import { MenuPageModule } from './pages/componentes/menu/menu.module';
 
-import { ComponentesModule } from './pages/componentes/componentes.module';
+ import { ComponentesModule } from './pages/componentes/componentes.module';
+// import { MenuPageModule } from '../../componentes/menu/menu.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,10 +26,12 @@ import { ComponentesModule } from './pages/componentes/componentes.module';
       BrowserModule,
       IonicModule.forRoot(),
       AppRoutingModule,
-      ComponentesModule
+     ComponentesModule,
+    //MenuPageModule
     ],
    
   providers: [
+    ComponentesModule,
               Network,
               Storage,
              { provide: RouteReuseStrategy,
