@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // Siempre finalizar el API CON /
-  apiUrl: 'https://catastrotest.chone.gob.ec/api/' //'https://12e08f9dc416.ngrok.io/api'
+  apiUrl: 'https://43769befe297.ngrok.io/api/' //'https://12e08f9dc416.ngrok.io/api'
 };
 
 /*
