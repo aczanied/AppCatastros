@@ -5,10 +5,9 @@ import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [MenuComponent],
   imports: [
     CommonModule,
-    MenuComponent
   ],
   exports: [
     MenuComponent
