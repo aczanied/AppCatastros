@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuarios, Componente } from './../../../_models';
 import { AuthService } from 'src/app/_services/seguridad/auth.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-menu',
+  selector: 'app-menus',
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss']
 })
@@ -78,6 +79,7 @@ public currentUser: Usuarios = new Usuarios();
   ];
 
   constructor(private auth: AuthService,
+               private menu: MenuController,
               private router: Router) {
       if (this.auth.currentUserValue !== null) {
         this.currentUser = this.auth.currentUserValue;

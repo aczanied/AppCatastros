@@ -30,10 +30,15 @@ export class LoginPage implements OnInit {
               private ui: GeneralService,
              // private menu: MenuComponent
              ) {
-                if (this.loginService.currentUserValue) {
-               // this.router.navigate(['/inicio']);
-                this.router.navigate(['/decidir']);
-                }
+              
+              }
+
+ ionViewWillEnter() {
+  console.log('ingresando al login');
+  if (this.loginService.currentUserValue) {
+    // this.router.navigate(['/inicio']);
+     this.router.navigate(['/decidir']);
+     }
               }
 
   ngOnInit() {

@@ -14,9 +14,10 @@ import { Network } from '@ionic-native/network/ngx';
 import { JwtInterceptor } from './_guards/jwt.interceptor';
 import { UnauthorizedInterceptor } from './_guards/unauthorized.interceptor';
 import { MenuPageModule } from './pages/componentes/menu/menu.module';
+import { ComponentsModule } from './components/components.module';
 
- import { ComponentesModule } from './pages/componentes/componentes.module';
-// import { MenuPageModule } from '../../componentes/menu/menu.module';
+ // import { ComponentesModule } from './pages/componentes/componentes.module';
+ // import { MenuPageModule } from '../../componentes/menu/menu.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,12 +27,14 @@ import { MenuPageModule } from './pages/componentes/menu/menu.module';
       BrowserModule,
       IonicModule.forRoot(),
       AppRoutingModule,
-     ComponentesModule,
-    //MenuPageModule
+     // ComponentesModule,
+   // MenuPageModule
+   
     ],
    
   providers: [
-    ComponentesModule,
+  //  ComponentesModule,
+              ComponentsModule,
               Network,
               Storage,
              { provide: RouteReuseStrategy,
@@ -46,6 +49,9 @@ import { MenuPageModule } from './pages/componentes/menu/menu.module';
               multi: true,
             },
              ],
+  exports: [
+    MenuPageModule
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
