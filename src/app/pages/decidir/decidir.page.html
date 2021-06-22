@@ -5,8 +5,20 @@
         </h1>
     </div>
     <ion-row>
+
         <ion-col size="12" class="icono-login2">
-            <ion-card (click)="irRural()" color="primary" class="cardDecision">
+            <ion-card  (click)="irUrbano()" color="primary" expand="block" fill="clear" shape="round" class="cardDecisionUr">
+                <ion-card-header>
+
+                    <ion-card-title class="textoDecisionUr"> Urbano</ion-card-title>
+                </ion-card-header>
+
+
+            </ion-card>
+        </ion-col>
+
+        <ion-col size="12" class="icono-login2">
+            <ion-card [disabled]='true' (click)="irRural()" color="primary" class="cardDecision">
                 <ion-card-header>
 
                     <ion-card-title class="textoDecision"> Rural</ion-card-title>
@@ -16,16 +28,7 @@
             </ion-card>
         </ion-col>
 
-        <ion-col size="12" class="icono-login2">
-            <ion-card [disabled]='true' (click)="irUrbano()" color="primary" expand="block" fill="clear" shape="round" class="cardDecisionUr">
-                <ion-card-header>
-
-                    <ion-card-title class="textoDecisionUr"> Urbano</ion-card-title>
-                </ion-card-header>
-
-
-            </ion-card>
-        </ion-col>
+       
     </ion-row>
 
 

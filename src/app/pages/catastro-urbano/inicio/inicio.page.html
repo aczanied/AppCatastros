@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar color="blueone">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="font-size-18">Inicio</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <div class="card card-1" routerLink="/catastro-urbano/gestion/consulta-basica" animation="slide-left-right">
+                    <h4 class="ion-text-left">Catastro <br> Urbano</h4>
+                </div>
+            </ion-col>
+            <ion-col size="12">
+                <div class="card" routerLink="/catastro-urbano/gestion/construccion">
+                    <div class="card-2"></div>
+                    <h4 class="ion-text-left">Crear <br> Construcción</h4>
+                </div>
+            </ion-col>
+            <ion-col size="12">
+                <div class="card" routerLink="/catastro-urbano/gestion/predios">
+                    <div class="card-3"></div>
+                    <h4 class="ion-text-left">Crear <br> Predio</h4>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- <ion-button (click)="dismiss()">regresar</ion-button> -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card card-1">
+                    <h4>Catastro Urbano</h4>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card card-2">
+                    <h4>Crear Construcción</h4>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card card-3">
+                    <h4>Crear Predio</h4>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</ion-content>

@@ -1,0 +1,83 @@
+<!-- <ion-header>
+    <ion-toolbar color="blueone">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="font-size-18">Consulta Básica</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding" [scrollEvents]="true">
+
+    <div *ngIf="!selected">
+        <p>Digite para buscar</p>
+    </div>
+
+    <ion-item class="border-item">
+        <ionic-selectable placeholder="Digite para buscar" item-content itemValueField="id" itemTextField="nombres" [items]="busqueda" [canSearch]="true" (onSearch)="buscar($event)" (onChange)="onChangeBuscar($event)">
+        </ionic-selectable>
+    </ion-item>
+
+    <div class="centrado" *ngIf="!selected"></div>
+    <ion-content>
+    
+        <div *ngIf="selected">
+
+            <ion-item class="border-item-2">
+                <ion-text color="dark" class="ion-text-uppercase">
+                    <h5 class="bold">{{ contribuyenteResultado.contribuyente.nombres }}
+                        <span class="margin-top-20 alignright">CI: {{ contribuyenteResultado.contribuyente.identificacion }}
+                     </span>
+                    </h5>
+                </ion-text>
+            </ion-item>
+            <ion-text *ngIf="contribuyenteResultado.predios.length === 0" color="blueone" class="centrado-23"> Contribuyente no muestra Predios Registrados</ion-text>
+
+            <ion-list>
+                <ion-card *ngFor="let predio of data; let i = index">
+                    <ion-card-header color="blueone">
+                        <ion-card-title class="font-size-card-2">
+                            <ion-icon name="document-attach-outline" class="font-size-card-1"></ion-icon>
+                            {{ predio.clave }}
+                        
+                        </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="padding-top-20">
+                        <p class="black-text justify margen-dir">{{ predio.direccion }}</p>
+                        <br>
+                        <p class="black-text justify">
+                            <ion-text class="bold">Área Terreno:</ion-text> {{ predio.area_terreno | number: '0.2-2' }}
+                        </p>
+                        <p class="black-text justify">
+                            <ion-text class="bold">Área Constr:</ion-text> {{ predio.area_construccion | number: '0.2-2' }}
+                        </p>
+                        <p class="black-text justify">
+                            <ion-text class="bold"> Avalúo Terreno:</ion-text> $ {{ predio.avaluo_suelo | number: '0.2-2' }}
+                        </p>
+                    </ion-card-content>
+
+                    <ion-item class="border-item-2">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6">
+                                    <ion-button expand="block" (click)="abrirModal(predio.clave, true)" color="success">Visualizar</ion-button>
+                                </ion-col>
+                                <ion-col size="6">
+                                    <ion-button class="text-gray" expand="block" color="yellow" (click)="abrirModal(predio.clave, false)">Editar</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                </ion-card>
+            </ion-list>
+
+
+            <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+                <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+        <div class="centrado-after" *ngIf="contribuyenteResultado.predios.length === 0 && selected"></div>
+    </ion-content>
+</ion-content> -->

@@ -1,0 +1,84 @@
+#container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#container strong {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+#container p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+}
+
+#container a {
+    text-decoration: none;
+}
+
+.card {
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    padding: 14px 0px 18px 5px;
+    cursor: pointer;
+}
+
+.card:focus {
+    outline: transparent solid 0px!important;
+}
+
+.card:hover {
+    // transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+// .card img {
+//     position: absolute;
+//     top: 20px;
+//     right: 115px!important;
+//     max-height: 120px;
+// }
+// background-image: url(https://image.flaticon.com/icons/svg/3442/3442576.svg);
+.card-1 {
+    background-image: url(../../../assets/img/house.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+.card-2 {
+    background-image: url(../../../assets/img/construction.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 65px;
+    position: absolute;
+    top: -32px;
+    right: 17px !important;
+    padding: 5em;
+}
+
+.card-3 {
+    background-image: url(../../../assets/img/building.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 65px;
+    position: absolute;
+    top: -32px;
+    right: 17px !important;
+    padding: 5em;
+}
+
+@media(max-width: 990px) {
+    .card {
+        margin: 0px 5px 20px 5px;
+    }
+}

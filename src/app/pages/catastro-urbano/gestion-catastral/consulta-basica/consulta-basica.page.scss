@@ -1,0 +1,95 @@
+    main.inner-scroll .scroll-y {
+        touch-action: unset!important;
+        overflow-y: hidden!important;
+        overscroll-behavior-y: contain;
+    }
+    
+    .centrado {
+        // text-align: center;
+        background-image: url(https://www.flaticon.com/svg/static/icons/svg/3326/3326441.svg);
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        -webkit-filter: grayscale(1);
+        filter: grayscale(1);
+        opacity: 0.2;
+        height: 70%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .centrado-after {
+        // text-align: center;
+        background-image: url(https://www.flaticon.com/svg/static/icons/svg/2172/2172462.svg);
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        -webkit-filter: grayscale(1);
+        filter: grayscale(1);
+        opacity: 0.2;
+        height: 40%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    @media (min-width: 450px) {
+        .centrado {
+            // text-align: center;
+            background-image: url(https://www.flaticon.com/svg/static/icons/svg/3326/3326441.svg);
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: center;
+            -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+            opacity: 0.2;
+            height: 85%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    
+    @media (min-width: 450px) {
+        .centrado-after {
+            background-image: url(https://www.flaticon.com/svg/static/icons/svg/2172/2172462.svg);
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: center;
+            -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+            opacity: 0.2;
+            height: 70%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    
+    .centrado-23 {
+        text-align: center;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        font-size: 20px;
+        margin-bottom: 20px;
+        padding: 0px 10px 0px 10px;
+        // color: black!important;
+        // position: absolute;
+        // bottom: 175px;
+        // left: 65px;
+    }
+    
+    .margen-dir {
+        margin-top: 10px;
+    }

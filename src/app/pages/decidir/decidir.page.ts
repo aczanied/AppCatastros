@@ -38,6 +38,8 @@ export class DecidirPage implements OnInit {
 
   public irUrbano() {
 
+    // Validar que se hayan descargado los datos de Urbano
+
   }
 
 }

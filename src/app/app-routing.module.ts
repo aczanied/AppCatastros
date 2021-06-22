@@ -32,6 +32,22 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     path: 'sincronizar-descarga',
     loadChildren: () => import('./pages/sincronizar-descarga/sincronizar-descarga.module').then( m => m.SincronizarDescargaPageModule)
+  },
+  {
+    path: 'descargar-datos',
+    loadChildren: () => import('./pages/catastro-urbano/descargar-datos/descargar-datos.module').then( m => m.DescargarDatosPageModule)
+  },
+  {
+    path: 'cargar-datos',
+    loadChildren: () => import('./pages/catastro-urbano/cargar-datos/cargar-datos.module').then( m => m.CargarDatosPageModule)
+  },
+  {
+    path: 'sync-carga',
+    loadChildren: () => import('./pages/catastro-urbano/sync-carga/sync-carga.module').then( m => m.SyncCargaPageModule)
+  },
+  {
+    path: 'sync-descarga',
+    loadChildren: () => import('./pages/catastro-urbano/sync-descarga/sync-descarga.module').then( m => m.SyncDescargaPageModule)
   }
 ];
 
