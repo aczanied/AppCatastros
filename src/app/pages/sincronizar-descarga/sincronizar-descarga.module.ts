@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SincronizarDescargaPageRoutingModule } from './sincronizar-descarga-routing.module';
 
 import { SincronizarDescargaPage } from './sincronizar-descarga.page';
-import { ComponentesModule } from '../componentes/componentes.module';
+// import { ComponentesModule } from '../componentes/componentes.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { ComponentesModule } from '../componentes/componentes.module';
     FormsModule,
     IonicModule,
     SincronizarDescargaPageRoutingModule,
-    ComponentesModule
+   // ComponentesModule
   ],
   declarations: [SincronizarDescargaPage]
 })
