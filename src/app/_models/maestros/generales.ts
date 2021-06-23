@@ -544,58 +544,247 @@ export const diccionario: LocalData[] = [
         esRural: false,
      },
 
+      // 51. Sincronizar Combo Localizacion
+       {
+         _id: 'Localizacion', // No alterar
+         tablaBase: 'localizaciones',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/localizacion',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 52. Sincronizar Combo Afectacion
+      {
+         _id: 'Afectacion', // No alterar
+         tablaBase: 'afectaciones',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/afectacion',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 53. Sincronizar Combo Abastecimiento Agua
+       {
+         _id: 'AbastecimientoAgua', // No alterar
+         tablaBase: 'abastecimiento_agua',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/abastecimiento-agua',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 54. Sincronizar Combo Electricidad
+       {
+         _id: 'Electricidad', // No alterar
+         tablaBase: 'electricidad',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/electricidad',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 55. Sincronizar Combo Transporte
+      {
+         _id: 'Transporte', // No alterar
+         tablaBase: 'transportes',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/transporte',
+         esUrbano: true,
+         esRural: false,
+      },
+
+
+      // 56. Sincronizar Combo Internet
+      {
+         _id: 'Internet', // No alterar
+         tablaBase: 'internet',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/internet',
+         esUrbano: true,
+         esRural: false,
+      },
+
+
+      // 57. Sincronizar Combo Tipo Suelo
+      {
+         _id: 'TipoSuelo', // No alterar
+         tablaBase: 'tipo_suelo',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/tipo-suelo',
+         esUrbano: true,
+         esRural: false,
+      },
+
+       // 58. Sincronizar Combo Alumbrados
+       {
+         _id: 'Alumbrado', // No alterar
+         tablaBase: 'alumbrados',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/alumbrado',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 59. Sincronizar Combo Recoleccion Basura
+       {
+         _id: 'RecoleccionBasura', // No alterar
+         tablaBase: 'recoleccion_basura',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/recoleccion-basura',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 60. Sincronizar Combo Estado
+        {
+         _id: 'Estado', // No alterar
+         tablaBase: 'estados',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/estado',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 61. Sincronizar Combo Alcantarillado
+      {
+         _id: 'Alcantarillado', // No alterar
+         tablaBase: 'alcantarillados',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/alcantarillado',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 62. Sincronizar Combo Telefonia
+      {
+         _id: 'Telefonia', // No alterar
+         tablaBase: 'telefonia',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/telefonia',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 63. Sincronizar Combo Uso Suelo
+      {
+         _id: 'UsoSuelo', // No alterar
+         tablaBase: 'uso_suelo',
+         api: true,
+         ruta: 'catastro-urbano/datos-predio/informacion-general/uso-suelo',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 64. Sincronizar Combo Columnas
+      {
+         _id: 'Columna', // No alterar
+         tablaBase: 'columnas',
+         api: true,
+         ruta: 'catastro-urbano/construccion/estructuras/columnas',
+         esUrbano: true,
+         esRural: false,
+      },
+
+
+      // 65. Sincronizar Combo Entrepisos
+      {
+         _id: 'Entrepiso', // No alterar
+         tablaBase: 'entrepisos',
+         api: true,
+         ruta: 'catastro-urbano/construccion/estructuras/entrepisos',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 66. Sincronizar Combo Cubierta Acabado
+      {
+         _id: 'CubiertaAcabado', // No alterar
+         tablaBase: 'cubierta_acabados',
+         api: true,
+         ruta: 'catastro-urbano/construccion/acabados/cubiertas',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 67. Sincronizar Combo Parroquias
+      {
+         _id: 'Parroquia', // No alterar
+         tablaBase: 'parroquias',
+         api: true,
+         ruta: 'catastro-urbano/parroquias',
+         esUrbano: true,
+         esRural: false,
+      },
+
+      // 68. Sincronizar Combo Informacion General
+        {
+         _id: 'InformacionGeneral', // No alterar
+         tablaBase: 'informacion_general',
+         api: true,
+         ruta: 'catastro-urbano/informacion-general',
+         esUrbano: true,
+         esRural: false,
+      }
+
+
+
+   
 
 
 
 
 
-    {
-        _id: 'Entrepisos', // No alterar
-        tablaBase: 'entrepisos',
-        api: true,
-        ruta: 'catastro-urbano/construccion/estructuras/entrepisos',
-        esUrbano: true,
-        esRural: false,
-     },
-     {
-        _id: 'Columnas', // No alterar
-        tablaBase: 'columnas',
-        api: true,
-        ruta: 'catastro-urbano/construccion/estructuras/columnas',
-        esUrbano: true,
-        esRural: false,
-     },
-     {
-        _id: 'Uso Suelo', // No alterar
-        tablaBase: 'uso-suelo',
-        api: true,
-        ruta: 'catastro-urbano/datos-predio/informacion-general/uso-suelo',
-        esUrbano: true,
-        esRural: false,
-     },
-    {
-        _id: 'Cubiertas', // No alterar
-        tablaBase: 'cubiertas',
-        api: true,
-        ruta: 'catastro-urbano/construccion/acabados/cubiertas',
-        esUrbano: true,
-        esRural: false,
-     },
-     {
-        _id: 'Parroquias', // No alterar
-        tablaBase: 'parroquias',
-        api: true,
-        ruta: 'catastro-urbano/parroquias',
-        esUrbano: true,
-        esRural: false,
-     },
-    {
-       _id: 'InformacionPropietario', // No alterar
-       tablaBase: 'informacion_propietario',
-       api: false,
-        ruta: 'catastro-urbano/informacion-propietario',
-        esUrbano: true,
-        esRural: false,
-    }];
+
+
+   //  {
+   //      _id: 'Entrepisos', // No alterar
+   //      tablaBase: 'entrepisos',
+   //      api: true,
+   //      ruta: 'catastro-urbano/construccion/estructuras/entrepisos',
+   //      esUrbano: true,
+   //      esRural: false,
+   //   },
+   //   {
+   //      _id: 'Columnas', // No alterar
+   //      tablaBase: 'columnas',
+   //      api: true,
+   //      ruta: 'catastro-urbano/construccion/estructuras/columnas',
+   //      esUrbano: true,
+   //      esRural: false,
+   //   },
+   //   {
+   //      _id: 'Uso Suelo', // No alterar
+   //      tablaBase: 'uso-suelo',
+   //      api: true,
+   //      ruta: 'catastro-urbano/datos-predio/informacion-general/uso-suelo',
+   //      esUrbano: true,
+   //      esRural: false,
+   //   },
+   //  {
+   //      _id: 'Cubiertas', // No alterar
+   //      tablaBase: 'cubiertas',
+   //      api: true,
+   //      ruta: 'catastro-urbano/construccion/acabados/cubiertas',
+   //      esUrbano: true,
+   //      esRural: false,
+   //   },
+   //   {
+   //      _id: 'Parroquias', // No alterar
+   //      tablaBase: 'parroquias',
+   //      api: true,
+   //      ruta: 'catastro-urbano/parroquias',
+   //      esUrbano: true,
+   //      esRural: false,
+   //   },
+   //  {
+   //     _id: 'InformacionPropietario', // No alterar
+   //     tablaBase: 'informacion_propietario',
+   //     api: false,
+   //      ruta: 'catastro-urbano/informacion-propietario',
+   //      esUrbano: true,
+   //      esRural: false,
+   //  }
+   ];
 
 
