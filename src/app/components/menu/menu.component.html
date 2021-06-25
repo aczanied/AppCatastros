@@ -14,12 +14,12 @@
 
   </ion-header>
   <ion-content id="content">
-      <div *ngFor="let p of  pages">
+      <div *ngFor="let p of  listaMenu">
 
         <hr>
               <ion-menu-toggle *ngIf="p.url">
-                <!-- [routerLink]="p.url" -->
-                  <ion-item class="sub-item-class color-gray border-item-2"  (click)="navegar()" routerDirection="root">
+              
+                  <ion-item class="sub-item-class color-gray border-item-2"  (click)="navegar(p.url)" routerDirection="root">
                       <ion-icon slot="start" [name]="p.icon" class="tamanio-icon"></ion-icon>
                       <ion-label class="margin-icon-2 tamanio-letra">{{ p.title }}</ion-label>
                   </ion-item>
@@ -33,8 +33,8 @@
           </ion-item>
           <ion-list *ngIf="p.open" class="margin-list">
               <ion-menu-toggle>
-                <!-- [routerLink]="sub.url" -->
-                  <ion-item class="sub-item-class color-gray border-item-2" *ngFor="let sub of  p.children" routerDirection="root">
+             
+                  <ion-item class="sub-item-class color-gray border-item-2" *ngFor="let sub of  p.children" (click)="navegar(sub.url)" routerDirection="root">
                       <ion-icon slot="start" [name]="sub.icon" class="tamanio-icon"></ion-icon>
                       <ion-label class="margin-icon-2 tamanio-letra">{{ sub.title }}</ion-label>
                   </ion-item>

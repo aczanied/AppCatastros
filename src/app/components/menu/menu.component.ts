@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuarios, Componente } from './../../_models';
 import { AuthService } from 'src/app/_services/seguridad/auth.service';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -15,10 +15,12 @@ export class MenuComponent implements OnInit {
 
   componentes: Observable<Componente[]>;
 public currentUser: Usuarios = new Usuarios();
-  pages = [
+
+public listaMenu: any[] = [];
+  public menuUrbano = [
     {
       title: 'Inicio',
-      url: 'inicio',
+      url: 'urbano',
       icon: 'home',
       open: false,
       children: []
@@ -79,6 +81,7 @@ public currentUser: Usuarios = new Usuarios();
   ];
 
   constructor(private auth: AuthService,
+               private navCtrl: NavController,
                private menu: MenuController,
               private router: Router) {
       if (this.auth.currentUserValue !== null) {
@@ -86,10 +89,11 @@ public currentUser: Usuarios = new Usuarios();
       }}
 
   ngOnInit() {
-
+this.listaMenu = this.menuUrbano;
   }
-  public navegar() {
-
+  public navegar(ruta: any) {
+    console.log(ruta);
+    this.navCtrl.navigateRoot(ruta, { animated: true });
   }
   salir() {
     console.log('saliemnd')

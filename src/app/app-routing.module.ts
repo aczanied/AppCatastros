@@ -43,7 +43,13 @@ const routes: Routes = [
   {
     path: 'urbano/sync-descarga',
     loadChildren: () => import('./pages/catastro-urbano/sync-descarga/sync-descarga.module').then( m => m.SyncDescargaPageModule)
-  }
+  },
+  {
+    path: 'urbano',
+    canActivate: [AuthGuard] ,
+    loadChildren: () => import('./pages/catastro-urbano/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+
   //#endregion
   // Fin Rutas Urbano
 ];
