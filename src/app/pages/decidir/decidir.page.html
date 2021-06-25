@@ -1,38 +1,35 @@
 <ion-content class="backgroundDecision">
-    
+
     <ion-slides class="mainSlide">
+        <ion-row>
+            <ion-col size="12" class="icono-login2">
+                <div class="ion-padding textCenter">
+                    <h1>
+                        Por favor elige el Catastro
+                    </h1>
+                </div>
+            </ion-col>
+            <ion-col size="12" class="icono-login2">
+                <ion-card (click)="irUrbano()" color="primary" expand="block" fill="clear" shape="round" class="cardDecisionUr">
+                    <ion-card-header>
 
-    <div class="ion-padding textCenter">
-        <h1>
-            Por favor elige el Catastro
-        </h1>
-    </div>
-    <ion-row>
-
-        <ion-col size="12" class="icono-login2">
-            <ion-card  (click)="irUrbano()" color="primary" expand="block" fill="clear" shape="round" class="cardDecisionUr">
-                <ion-card-header>
-
-                    <ion-card-title class="textoDecisionUr"> Urbano</ion-card-title>
-                </ion-card-header>
-
-
-            </ion-card>
-        </ion-col>
-
-        <ion-col size="12" class="icono-login2">
-            <ion-card [disabled]='true' (click)="irRural()" color="primary" class="cardDecision">
-                <ion-card-header>
-
-                    <ion-card-title class="textoDecision"> Rural</ion-card-title>
-                </ion-card-header>
+                        <ion-card-title class="textoDecisionUr"> Urbano</ion-card-title>
+                    </ion-card-header>
 
 
-            </ion-card>
-        </ion-col>
+                </ion-card>
+            </ion-col>
+            <ion-col size="12" class="icono-login2">
+                <ion-card [disabled]='true' (click)="irRural()" color="primary" class="cardDecision">
+                    <ion-card-header>
 
-       
-    </ion-row>
+                        <ion-card-title class="textoDecision"> Rural</ion-card-title>
+                    </ion-card-header>
+
+
+                </ion-card>
+            </ion-col>
+        </ion-row>
 
 
 
@@ -43,13 +40,13 @@
 
 
 
-    <!-- <ion-button (click)="irRural()" expand="block" color="primary" shape="round">
+        <!-- <ion-button (click)="irRural()" expand="block" color="primary" shape="round">
         Ir a Rural
     </ion-button>
 
     <ion-button [disabled]='true' (click)="irUrbano()" expand="block" fill="clear" shape="round">
         Ir a Urbano
     </ion-button> -->
-    
-</ion-slides>
+
+    </ion-slides>
 </ion-content>
