@@ -88,8 +88,11 @@ public currentUser: Usuarios = new Usuarios();
   ngOnInit() {
 
   }
+  public navegar() {
 
+  }
   salir() {
+    console.log('saliemnd')
     this.auth.logout();
     this.router.navigate(['/login']);
   }

@@ -2,7 +2,7 @@
 
   <ion-header class="size">
 
-      <ion-img src="../../../assets/img/portada.jpg"></ion-img>
+      <!-- <ion-img src="../../../assets/img/portada.jpg"></ion-img> -->
       <ion-text class="name-menu">
           {{ currentUser.name }}
       </ion-text>
@@ -19,7 +19,7 @@
         <hr>
               <ion-menu-toggle *ngIf="p.url">
                 <!-- [routerLink]="p.url" -->
-                  <ion-item class="sub-item-class color-gray border-item-2"   routerDirection="root">
+                  <ion-item class="sub-item-class color-gray border-item-2"  (click)="navegar()" routerDirection="root">
                       <ion-icon slot="start" [name]="p.icon" class="tamanio-icon"></ion-icon>
                       <ion-label class="margin-icon-2 tamanio-letra">{{ p.title }}</ion-label>
                   </ion-item>
