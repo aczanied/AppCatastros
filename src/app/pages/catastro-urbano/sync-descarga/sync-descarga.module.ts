@@ -8,6 +8,7 @@ import { SyncDescargaPageRoutingModule } from './sync-descarga-routing.module';
 
 import { SyncDescargaPage } from './sync-descarga.page';
 import { MenuPageModule } from '../../componentes/menu/menu.module';
+import { ComponentsModule } from './../../../components/components.module';
 // import { ComponentesModule } from '../../componentes/componentes.module';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MenuPageModule } from '../../componentes/menu/menu.module';
     FormsModule,
     IonicModule,
     SyncDescargaPageRoutingModule,
-    MenuPageModule
+   // MenuPageModule
+   ComponentsModule
   ],
   providers: [
    // ComponentesModule,

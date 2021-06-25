@@ -1,14 +1,98 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Router } from '@angular/router';
+import { Usuarios, Componente } from './../../_models';
+import { AuthService } from 'src/app/_services/seguridad/auth.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+  styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  componentes: Observable<Componente[]>;
+public currentUser: Usuarios = new Usuarios();
+  pages = [
+    {
+      title: 'Inicio',
+      url: 'inicio',
+      icon: 'home',
+      open: false,
+      children: []
+    },
+    {
+      title: 'Catastro Urbano',
+      url: '',
+      icon: 'grid',
+      open: false,
+      children: [
+        {
+          title: 'Consulta Básica',
+          url: 'catastro-urbano/gestion/consulta-basica',
+          icon: 'bookmark',
+          open: false
+        },
+        {
+          title: 'Crear Predio',
+          url: 'catastro-urbano/gestion/predios',
+          icon: 'bookmark',
+          open: false
+        },
+        {
+          title: 'Crear Construcción',
+          url: 'catastro-urbano/gestion/construccion',
+          icon: 'bookmark',
+          open: false
+        },
+      ]
+    },
+    {
+      title: 'Sincronizacion',
+      url: '',
+      icon: 'sync',
+      open: false,
+      children: [
+        {
+          title: 'Subir Información',
+          url: 'carga',
+          icon: 'bookmark',
+          open: false
+        },
+        {
+          title: 'Descargar Información',
+          url: 'sincronizar',
+          icon: 'bookmark',
+          open: false
+        }
+      ]
+    },
+    // {
+    //   title: 'Sincronizar',
+    //   url: 'sincronizar',
+    //   icon: 'sync',
+    //   open: false,
+    //   children: []
+    // }
+  ];
 
-  ngOnInit() {}
+  constructor(private auth: AuthService,
+               private menu: MenuController,
+              private router: Router) {
+      if (this.auth.currentUserValue !== null) {
+        this.currentUser = this.auth.currentUserValue;
+      }}
+
+  ngOnInit() {
+
+  }
+
+  salir() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 
 }
+
