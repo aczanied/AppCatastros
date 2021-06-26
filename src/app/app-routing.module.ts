@@ -49,6 +49,22 @@ const routes: Routes = [
     canActivate: [AuthGuard] ,
     loadChildren: () => import('./pages/catastro-urbano/inicio/inicio.module').then( m => m.InicioPageModule)
   },
+  {
+    path: 'catastro-urbano/gestion/consulta-basica',
+    canActivate: [AuthGuard] ,
+    loadChildren: () => import('./pages/catastro-urbano/gestion-catastral/consulta-basica/consulta-basica.module')
+    .then( m => m.ConsultaBasicaPageModule)
+  },
+  {
+    path: 'catastro-urbano/gestion/predios',
+    canActivate: [AuthGuard] ,
+    loadChildren: () => import('./pages/catastro-urbano/predios/predios.module').then( m => m.PrediosPageModule)
+  },
+  {
+    path: 'catastro-urbano/gestion/construccion',
+    canActivate: [AuthGuard] ,
+    loadChildren: () => import('./pages/catastro-urbano/construccion/construccion.module').then( m => m.ConstruccionPageModule)
+  },
 
   //#endregion
   // Fin Rutas Urbano
