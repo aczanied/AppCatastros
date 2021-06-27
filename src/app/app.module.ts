@@ -16,6 +16,12 @@ import { UnauthorizedInterceptor } from './_guards/unauthorized.interceptor';
 // import { MenuPageModule } from './pages/componentes/menu/menu.module';
 import { ComponentsModule } from './components/components.module';
 
+import { Camera } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
  // import { ComponentesModule } from './pages/componentes/componentes.module';
  // import { MenuPageModule } from '../../componentes/menu/menu.module';
 
@@ -48,6 +54,11 @@ import { ComponentsModule } from './components/components.module';
               useClass: UnauthorizedInterceptor,
               multi: true,
             },
+            Camera,
+            File,
+            WebView,
+            FilePath,
+            BackgroundMode
              ],
   exports: [
    // MenuPageModule

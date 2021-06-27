@@ -65,6 +65,7 @@ export class LocaldbService {
    * @memberof LocaldbService
    */
   public buscarPrimerElemento(tabla: string): Promise<any> {
+    this.iniciar();
     return this.db.get(tabla).then((items: any[]) => {
       if (items) {
         return items[0];

@@ -11,7 +11,7 @@ import { Combo } from 'src/app/_models';
   providedIn: 'root'
 })
 
-export class CombosService {
+export class SincronizarService {
 
   constructor(private http: HttpClient,
               private networkService: NetworkService,
@@ -24,7 +24,7 @@ export class CombosService {
     /**
     * Obtiene los datos necesarios para armar un selector.
     */
-    public obtenerCombo(ruta: string, tblBase: string ) {
+    public descargarDatos(ruta: string, tblBase: string, esCombo: boolean ) {
     
         const url =  `${environment.apiUrl}${ruta}`;
 
@@ -38,26 +38,40 @@ export class CombosService {
        return this.http.get(url).pipe(
             map(async (data: Combo[]) => {
 
+              console.log(tblBase, data);
               let listaData:  Combo[] = [];
-         const dat = await data.forEach( async item => {
+
+              let el: any;  
+
+              if (esCombo) {
+                const dat = await data.forEach( async item => {
              
-              let el: Combo = { 
-                              id : item.id,
-                              _name : item._name
-                            };
-              listaData.push(el);
-            });
-
-            const el = {
-              _id: tblBase,
-              data: listaData
-            };
-
-           const result = await this.db.crear({ ...el }, tblBase).then(c => {
-              return true;
-            }).catch( error => {
-              return false;
-            });
+                  let el: Combo = { 
+                                  id : item.id,
+                                  _name : item._name
+                                };
+                  listaData.push(el);
+                });
+    
+                 el = {
+                  _id: tblBase,
+                  data: listaData
+                };
+    
+               
+                
+              } else {
+               el = {
+                _id: tblBase,
+                data: data
+              };
+              }
+              
+              const result = await this.db.crear({ ...el }, tblBase).then(c => {
+                return true;
+              }).catch( error => {
+                return false;
+              });
             
             return result;
 

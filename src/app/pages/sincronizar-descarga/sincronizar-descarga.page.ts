@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Animation, AnimationController } from '@ionic/angular';
 import { diccionario, LocalData } from '../../_models';
-import { CombosService } from '../../_services';
+import { SincronizarService } from '../../_services';
 
 @Component({
   selector: 'app-sincronizar-descarga',
@@ -23,7 +23,7 @@ export class SincronizarDescargaPage implements OnInit {
   private dbo: LocalData[] = diccionario;
   
   constructor(private animationCtrl: AnimationController,
-              private combosSV: CombosService) {
+              private combosSV: SincronizarService) {
 
    
    }
@@ -109,7 +109,7 @@ export class SincronizarDescargaPage implements OnInit {
      this.dbo.filter( c => c.api === true ).forEach( item => {
       
      
-      this.combosSV.obtenerCombo(item.ruta, item.tablaBase).subscribe( data => {
+      this.combosSV.descargarDatos(item.ruta, item.tablaBase, false).subscribe( data => {
  
           if(data === null) {
              // Avanzar la iteracion y poner mensaje de FALLO

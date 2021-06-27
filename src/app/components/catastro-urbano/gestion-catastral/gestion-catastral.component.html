@@ -1,0 +1,989 @@
+<!-- Back button -->
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="regresar()">
+                <ion-icon slot="start" name="arrow-back"></ion-icon>
+                <ion-label>Regresar</ion-label>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<!-- Cards Expandables -->
+<ion-content>
+    <ion-card class="margin-card">
+        <ion-card-header color="blueone" class="padding-card">
+            <ion-card-title class="font-size-card-2">
+                <p>
+                    {{ id }} <br> {{ contribuyenteNombre }}
+                </p>
+            </ion-card-title>
+        </ion-card-header>
+    </ion-card>
+
+
+    <!-- [expanded]="item.expanded" -->
+    <!-- INFORMACION BASICA -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(0)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Información Básica
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+
+
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[0].expanded" style="background-color: red;">
+                <ion-item>
+                    <ion-label position="stacked">Clave Catastral</ion-label>
+                    <ion-input class="padding-all-10" disabled type="text" value="{{ catastroUrbanoForm.informacion_basica.clave }}"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Clave Catastral Ante.</ion-label>
+                    <ion-input type="text" [disabled]="enabled" placeholder="Clave Anterior" value="{{ catastroUrbanoForm.informacion_basica.clave_anterior }}" (change)="catastroUrbanoForm.informacion_basica.clave_anterior = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Tipo de Predio</ion-label>
+                    <ionic-selectable (disabled)="enabled"   class="padding-left-5" [(ngModel)]="combos.cmbTipoPredio.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoPredio.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Calle Principal</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbCallePrincipal.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCallePrincipal.cmb" [canSearch]="true" (onSearch)="buscarCallePrincipal($event)"
+                        (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Intersección 1</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbInteseccionUno.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbInteseccionUno.cmb" [canSearch]="true" (onSearch)="buscarInterseccionUno($event)"
+                        (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Intersección 2</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbInteseccionDos.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbInteseccionDos.cmb" [canSearch]="true" (onSearch)="buscarInterseccionDos($event)"
+                        (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Zonificación</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbZonificaciones.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbZonificaciones.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Urbanización o Barrio</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbBarrios.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbBarrios.cmb" [canSearch]="true" (onSearch)="buscarBarrios($event)" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Manzana</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.informacion_basica.manzana }}" (change)="catastroUrbanoForm.informacion_basica.manzana = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Lote</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.informacion_basica.lote }}" (change)="catastroUrbanoForm.informacion_basica.lote = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Edificio o Condominio</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbCondominios.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCondominios.cmb" [canSearch]="true" (onSearch)="buscarCondominios($event)" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                    <!-- <ionic-selectable class="padding-left-5" [(ngModel)]="combos.cmbCondominios.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCondominios.cmb" [canSearch]="true" (onSearch)="buscarCondominios($event)" (onChange)="portChange($event)">
+                    </ionic-selectable> -->
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Nomenclatura Casa</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.informacion_basica.nomenclatura }}" (change)="catastroUrbanoForm.informacion_basica.nomenclatura = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Tipo de Vía</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbTipoCalles.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoCalles.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Clasificación de Suelo</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbClasificacionSuelo.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbClasificacionSuelo.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <!-- <br> -->
+                <ion-button [disabled]="enabled" class="margin-bottom-25 centrado-2-button" size="default" color="green" (click)="grabarInformacionBasica()"> Grabar Información Básica </ion-button>
+            </app-expandable>
+
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN INFORMACION BASICA -->
+
+    <!-- PROPIETARIO -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(1)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Propietario
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[1].expanded">
+                <ion-text color="primario">
+                    <p class="bold-500 top-10">Información Propietario</p>
+                </ion-text>
+                <ion-item>
+                    <ion-label position="stacked">Identificación</ion-label>
+                    <ion-button color="peligro" slot="end" class="margin-top-35 margin-left-10 " (click)="limpiarPropietario()">
+                        <ion-icon name="close"></ion-icon>
+                    </ion-button>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbPropietario.selected" itemValueField="id" itemTextField="identificacion" [items]="combos.cmbPropietario.cmb" [canSearch]="true" (onSearch)="buscarPropietario($event)"
+                        (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Nombres</ion-label>
+                    <ion-input type="text" disabled value="{{ combos.cmbPropietario.selected.nombres }}"> </ion-input>
+                </ion-item>
+
+                <ion-text color="primario">
+                    <p class="bold-500 espacio-item">Información Propietario Anterior</p>
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="stacked">Identificación (Propietario Anterior)</ion-label>
+                    <ion-button color="peligro" slot="end" class="margin-top-35 margin-left-10" (click)="limpiarPropietarioAnt()">
+                        <ion-icon name="close"></ion-icon>
+                    </ion-button>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbPropietarioAnt.selected" itemValueField="id" itemTextField="identificacion" [items]="combos.cmbPropietarioAnt.cmb" [canSearch]="true" (onSearch)="buscarPropietarioAnt($event)"
+                        (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Nombres (Propietario Anterior)</ion-label>
+                    <ion-input type="text" disabled value="{{ combos.cmbPropietarioAnt.selected.nombres }}"></ion-input>
+                </ion-item>
+                <ion-text color="primario">
+                    <p class="bold-500 espacio-item">Datos Tenencia</p>
+                </ion-text>
+                <ion-text color="primario">
+                    <p class="bold-500 espacio-item2">Sin Titulo de Propiedad</p>
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">N. Años Posesión</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.propietario.anios_posesion }}" (change)="catastroUrbanoForm.propietario.anios_posesion = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item class="padding-bottom-10">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">N. Años sin Perfeccionamiento</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.propietario.anios_sin_perfec }}" (change)="catastroUrbanoForm.propietario.anios_sin_perfec = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-text color="primario">
+                    <p class="bold-500">Con Titulo de Propiedad</p>
+                </ion-text>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Fecha Protocolización</ion-label>
+                    <ion-datetime [disabled]="enabled" displayFormat="DD/MM/YYYY" placeholder="dd / mm / yyyy" [(ngModel)]="catastroUrbanoForm.propietario.fecha_protocolizacion" value="{{ catastroUrbanoForm.propietario.fecha_protocolizacion }}"></ion-datetime>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Situación Predio</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbSituacionPredio.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbSituacionPredio.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Fecha Registro</ion-label>
+                    <ion-datetime [disabled]="enabled" displayFormat="DD/MM/YYYY" placeholder="dd / mm / yyyy" [(ngModel)]="catastroUrbanoForm.propietario.fecha_registro" value="{{ catastroUrbanoForm.propietario.fecha_registro }}"></ion-datetime>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Dominio</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbDominios.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbDominios.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Notaría</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.propietario.notaria }}" (change)="catastroUrbanoForm.propietario.notaria = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Adquisición</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbAdquisiciones.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbAdquisiciones.cmb" [canSearch]="true" (onSearch)="buscarAdquisiciones($event)" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">N Partida</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.propietario.num_partida }}" (change)="catastroUrbanoForm.propietario.num_partida = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Tomo</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.propietario.tomo }}" (change)="catastroUrbanoForm.propietario.tomo = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Cantón</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbCantones.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCantones.cmb" [canSearch]="true" (onSearch)="buscarCantones($event)" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Avalúo | Cuantía</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.propietario.cuantia }}" (change)="catastroUrbanoForm.propietario.cuantia = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">N Registro</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.propietario.num_registro }}" (change)="catastroUrbanoForm.propietario.num_registro = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Folio</ion-label>
+                    <ion-input [disabled]="enabled" type="text" value="{{ catastroUrbanoForm.propietario.folio }}" (change)="catastroUrbanoForm.propietario.folio     = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-button [disabled]="enabled" class="margin-bottom-25 centrado-2-button" size="default" color="green" (click)="grabarInformacionPropietario()"> Grabar Propietario </ion-button>
+            </app-expandable>
+
+
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN PROPIETARIO -->
+
+    <!-- HIPOTECA -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(2)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Hipoteca
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[2].expanded">
+                <ion-text color="primario">
+                    <p class="bold-500 top-10">Ocupante del Predio</p>
+                </ion-text>
+                <ion-list>
+                    <ion-item>
+                        <ion-label class="label-size">Propietario</ion-label>
+                        <ion-checkbox [disabled]="enabled" slot="start" (click)="catastroUrbanoForm.ocupantes.oc_propietario = !catastroUrbanoForm.ocupantes.oc_propietario " [(ngModel)]="combos.ckPropietario.selected"></ion-checkbox>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label class="label-size">Arrendatario</ion-label>
+                        <ion-checkbox [disabled]="enabled" slot="start" (click)="catastroUrbanoForm.ocupantes.oc_arrendatario = !catastroUrbanoForm.ocupantes.oc_arrendatario" [(ngModel)]="combos.ckArrendatario.selected"></ion-checkbox>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label class="label-size">Posesión S/E</ion-label>
+                        <ion-checkbox [disabled]="enabled" slot="start" (click)="catastroUrbanoForm.ocupantes.oc_posesion = !catastroUrbanoForm.ocupantes.oc_posesion" [(ngModel)]="combos.ckPosesion.selected"></ion-checkbox>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label class="label-size">Título Gratuito S/E</ion-label>
+                        <ion-checkbox [disabled]="enabled" slot="start" (click)="catastroUrbanoForm.ocupantes.oc_titulo_gratuito = !catastroUrbanoForm.ocupantes.oc_titulo_gratuito" [(ngModel)]="combos.ckGratuito.selected"></ion-checkbox>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label class="label-size">Ninguno</ion-label>
+                        <ion-checkbox [disabled]="enabled" slot="start" (click)="catastroUrbanoForm.ocupantes.oc_ninguno = !catastroUrbanoForm.ocupantes.oc_ninguno" [(ngModel)]="combos.ckNinguno.selected"></ion-checkbox>
+                    </ion-item>
+                </ion-list>
+
+
+
+
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Nombre Arrendatario </ion-label>
+                    <ion-input [disabled]="!combos.ckArrendatario.selected" type="text" value="{{ catastroUrbanoForm.ocupantes.nombre_arrendatario }}" (change)="catastroUrbanoForm.ocupantes.nombre_arrendatario = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item [disabled]="!combos.ckArrendatario.selected">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Contrato Vigente:</ion-label>
+                    <ion-item class="border-item-2">
+                        <ion-label class="label-size">Si / No</ion-label>
+                        <ion-checkbox slot="start" (click)="catastroUrbanoForm.ocupantes.contrato_vigente = !catastroUrbanoForm.ocupantes.contrato_vigente" [(ngModel)]="combos.ckContratoVigente.selected"></ion-checkbox>
+                    </ion-item>
+
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Registro Nro </ion-label>
+                    <ion-input [disabled]="!combos.ckArrendatario.selected" type="text" value="{{ catastroUrbanoForm.ocupantes.registro_numero }}" (change)="catastroUrbanoForm.ocupantes.registro_numero = $event.target.value"> </ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Fecha Inscripción</ion-label>
+                    <ion-datetime [disabled]="!combos.ckArrendatario.selected" displayFormat="DD/MM/YYYY" [(ngModel)]="catastroUrbanoForm.ocupantes.fecha_inscripcion" placeholder="dd / mm / yyyy" value="{{ catastroUrbanoForm.ocupantes.fecha_inscripcion }}"></ion-datetime>
+                </ion-item>
+                <ion-button [disabled]="enabled" class="margin-bottom-25 centrado-2-button" size="default" color="green" (click)="grabarInformacionHipoteca()"> Grabar Hipoteca </ion-button>
+
+
+            </app-expandable>
+
+
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN HIPOTECA -->
+
+
+    <!-- DATOS PREDIO -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(3)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Datos Predio
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[3].expanded">
+                <ion-text color="primario">
+                    <p class="bold-500 top-10">Características Formales</p>
+                </ion-text>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Área Escr.</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.area_escritura }}" (change)="catastroUrbanoForm.datos_predio.area_escritura = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Fondo</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.fondo }}" (change)="catastroUrbanoForm.datos_predio.fondo = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Ángulos Rectos</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.nro_angulosrectos }}" (change)="catastroUrbanoForm.datos_predio.nro_angulosrectos = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Forma</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbFormas.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbFormas.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Coordenadas X</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.coordenada_x }}" (change)="catastroUrbanoForm.datos_predio.coordenada_x = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Avalúo Suelo</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.avaluo_suelo }}" (change)="catastroUrbanoForm.datos_predio.avaluo_suelo = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Área</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.area  }}" (change)="catastroUrbanoForm.datos_predio.area  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Topografía</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbTopografias.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTopografias.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Perímetro</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.perimetro  }}" (change)="catastroUrbanoForm.datos_predio.perimetro  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Afectación Terremoto</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbAfectacionTerremoto.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbAfectacionTerremoto.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Coordenadas Y</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.coordenada_y  }}" (change)="catastroUrbanoForm.datos_predio.coordenada_y  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Avalúo Construcción</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.avaluo_construccion  }}" (change)="catastroUrbanoForm.datos_predio.avaluo_construccion  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Frente</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.frente  }}" (change)="catastroUrbanoForm.datos_predio.frente  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Nro Lados</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.nro_lados  }}" (change)="catastroUrbanoForm.datos_predio.nro_lados  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Localización</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbLocalizacion.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbLocalizacion.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Bloques Const.</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.bloques_construidos  }}" (change)="catastroUrbanoForm.datos_predio.bloques_construidos  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Bloques en Const.</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.bloques_en_construccion }}" (change)="catastroUrbanoForm.datos_predio.bloques_en_construccion = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item class="padding-bottom-10">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Avalúo Total</ion-label>
+                    <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.avaluo_propiedad  }}" (change)="catastroUrbanoForm.datos_predio.avaluo_propiedad  = $event.target.value"> </ion-input>
+                </ion-item>
+
+
+                <ion-text color="primario">
+                    <p class="bold-500">Propiedad Horizontal y Urbanizaciones</p>
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Habilitar / Deshabilitar</ion-label>
+                    <ion-checkbox [disabled]="enabled" (click)="intChecked()" [(ngModel)]="combos.ckPropiedadHorizontal.selected"></ion-checkbox>
+                </ion-item>
+                <ion-item [disabled]="!combos.ckPropiedadHorizontal.selected">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Área Terre. Útil</ion-label>
+                    <ion-input type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.area_terreno_util }}" (change)="catastroUrbanoForm.datos_predio.area_terreno_util = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item [disabled]="!combos.ckPropiedadHorizontal.selected">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Área Const. Útil</ion-label>
+                    <ion-input type="text" inputmode="numeric" value="{{ catastroUrbanoForm.datos_predio.area_construccion_util  }}" (change)="catastroUrbanoForm.datos_predio.area_construccion_util  = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item [disabled]="!combos.ckPropiedadHorizontal.selected">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Área Terre. Comunal</ion-label>
+                    <ion-input type="number" onkeydown="return event.keyCode !== 69" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.area_terreno_comunal  }}" (change)="catastroUrbanoForm.datos_predio.area_terreno_comunal  = $event.target.value">
+                    </ion-input>
+                </ion-item>
+                <ion-item [disabled]="!combos.ckPropiedadHorizontal.selected">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Área Const. Comunal</ion-label>
+                    <ion-input type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.area_construccion_comunal }}" (change)="catastroUrbanoForm.datos_predio.area_construccion_comunal = $event.target.value"> </ion-input>
+                </ion-item>
+                <ion-item class="padding-bottom-10" [disabled]="!combos.ckPropiedadHorizontal.selected">
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Alicuota</ion-label>
+                    <ion-input type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.alicuota }}" (change)="catastroUrbanoForm.datos_predio.alicuota = $event.target.value"> </ion-input>
+                </ion-item>
+
+
+                <ion-text color="primario">
+                    <p class="bold-500">Servicios en la vía Frontal</p>
+                </ion-text>
+
+
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Afectación</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbAfectacion.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbAfectacion.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Abast. Agua</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbAbastecimientoAgua.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbAbastecimientoAgua.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Electricidad</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbElectricidad.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbElectricidad.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Transporte</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbTransporte.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTransporte.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Internet</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbInternet.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbInternet.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Caracte. Suelo</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]=" combos.cmbTipoSuelo.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoSuelo.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Medidores</ion-label>
+                    <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ catastroUrbanoForm.datos_predio.nro_medidores_agua }}"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Alumbrado</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbAlumbrados.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbAlumbrados.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Recolec. Basura</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbRecoleccionBasura.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbRecoleccionBasura.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Bordillo (Si / No)</ion-label>
+                    <ion-checkbox [disabled]="enabled" (click)="catastroUrbanoForm.datos_predio.tiene_bordillo = !catastroUrbanoForm.datos_predio.tiene_bordillo " [(ngModel)]="combos.ckBordillo.selected"></ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Estado Predio</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbEstado.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbEstado.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Alcantarillado</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbAlcantarillado.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbAlcantarillado.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Telefonía</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbTelefonia.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTelefonia.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Aseo Calles</ion-label>
+                    <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="combos.cmbAseoCalles.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbAseoCalles.cmb" [canSearch]="true" (onChange)="portChange($event)">
+                    </ionic-selectable>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Acera (Si / No)</ion-label>
+                    <ion-checkbox [disabled]="enabled" (click)="catastroUrbanoForm.datos_predio.tiene_acera = !catastroUrbanoForm.datos_predio.tiene_acera" [(ngModel)]="combos.ckAcera.selected"></ion-checkbox>
+                </ion-item>
+                <ion-button [disabled]="enabled" class="margin-bottom-25 centrado-2-button" size="default" color="green" (click)="grabarDatosPredio()"> Grabar Datos Predio </ion-button>
+
+
+
+            </app-expandable>
+
+
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN DATOS PREDIO -->
+
+
+    <!-- CARACTERISTICAS -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(4)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Características
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[4].expanded">
+                <ion-text color="primario">
+                    <p class="bold-500 top-10">Usos del Predio</p>
+                </ion-text>
+
+                <ion-card-content *ngFor="let item of catastroUrbanoForm.uso_predio; let idx = index;">
+                    <div *ngIf="item.estado_logico !== 'deleted'">
+                        <ion-item>
+                            <ion-label position="stacked">Uso del Suelo</ion-label>
+                            <ion-button color="peligro" slot="end" (click)="eliminarUsoPredio(item.id, idx)" class="margin-top-35 margin-left-10 ">
+                                <ion-icon name="close"></ion-icon>
+                            </ion-button>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_tipo_usos_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbUsoSuelo.cmb" [canSearch]="true" (onSearch)="buscarUsoSuelo($event)" (onChange)="portChange($event); isModifiedUsoPredio(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked">Razón Social</ion-label>
+                            <ion-input [disabled]="enabled" type="text" value="{{ item.razon }}" (change)="item.razon = $event.target.value; isModifiedUsoPredio(idx); "> </ion-input>
+                        </ion-item>
+                    </div>
+                </ion-card-content>
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="6">
+                            <ion-button [disabled]="enabled" expand="block" color="blueone" (click)="agregarUsoPredio(catastroUrbanoForm.informacion_basica.clave)">Agregar</ion-button>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-button [disabled]="enabled" class="text-gray" expand="block" color="green" (click)="grabarUsoPredio()">Grabar Uso P.</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
+                <ion-text color="primario">
+                    <p class="bold-500 espacio">Datos Copropietario</p>
+                </ion-text>
+
+                <ion-card-content *ngFor="let item of catastroUrbanoForm.copropietario; let idx = index;">
+                    <div *ngIf="item.estado_logico !== 'deleted'">
+                        <ion-item>
+                            <ion-label position="stacked">Identificación</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_contribuyente_id.selected" itemValueField="id" itemTextField="identificacion" [items]="combos.cmbPropietario.cmb" [canSearch]="true" (onSearch)="buscarPropietario($event)"
+                                (onChange)="portChange($event); isModifiedCopropietario(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item class="padding-bottom-10">
+                            <ion-label position="stacked">Nombres</ion-label>
+                            <ion-input [disabled]="true" type="text" value="{{ item.cmb_contribuyente_id.selected.nombres }}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-button color="peligro" slot="end" (click)="eliminarCopropietario(item.id, idx)" class="margin-top-25 margin-left-10 ">
+                                <ion-icon name="close"></ion-icon>
+                            </ion-button>
+                            <ion-label position="stacked">Porcentaje</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{item.porcentaje}}" (change)="item.porcentaje = $event.target.value; isModifiedCopropietario(idx);"> </ion-input>
+                        </ion-item>
+                    </div>
+                </ion-card-content>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="6">
+                            <ion-button [disabled]="enabled" expand="block" color="blueone" (click)="agregarCopropietario(catastroUrbanoForm.informacion_basica.clave)">Agregar</ion-button>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-button [disabled]="enabled" class="text-gray" expand="block" color="green" (click)="grabarCopropietario()"> Grabar Copr.</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </app-expandable>
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN CARACTERISTICAS -->
+
+
+    <!-- CONSTRUCCION -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(5)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Construcción
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[5].expanded">
+                <ion-text color="primario">
+                    <p class="bold-500 top-10">Datos de la Construcción</p>
+                </ion-text>
+                <ion-list>
+                    <ion-radio-group>
+                        <div *ngFor="let item of catastroUrbanoForm.datos_adicionales; let idx = index">
+                            <div *ngIf="item.estado_logico !== 'deleted'">
+                                <ion-item>
+                                    <ion-label>Contruccion {{ item.construccion_id }}</ion-label>
+                                    <ion-radio slot="start" (click)="seleccionarConstruccion(item.construccion_id, $event)" [value]="item.construccion_id"></ion-radio>
+                                </ion-item>
+                                <ion-row *ngIf="item.checked">
+                                    <!-- <ion-col size='12'>
+                                    
+                                        <ion-checkbox [id]="item.construccion_id" (click)="seleccionarConstruccion(item.construccion_id, $event)"></ion-checkbox>
+                                    </ion-col> -->
+                                    <ion-col>
+                                        <ion-item>
+                                            <ion-label position="stacked">Bloque</ion-label>
+                                            <ion-input disabled type="text" value="{{item.bloque}}"> </ion-input>
+
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item>
+                                            <ion-label position="stacked">Piso</ion-label>
+                                            <ion-input disabled type="text" value="{{item.piso}}"> </ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item>
+                                            <ion-label position="stacked">Depart.</ion-label>
+                                            <ion-input disabled type="text" value="{{item.departamento}}"> </ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item>
+                                            <ion-label position="stacked">Área Constr.</ion-label>
+                                            <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{item.area_const}}"> </ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-item>
+                                            <ion-label position="stacked">Año Constr.</ion-label>
+                                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{item.anio_const}}" (change)="item.anio_const = $event.target.value; isModifiedDetalle(idx);"> </ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col size="12">
+                                        <ion-item>
+                                            <ion-label position="stacked">Uso del Piso</ion-label>
+                                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_tipo_usos_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoUsos.cmb" [canSearch]="true" (onSearch)="buscarTipoUsos($event)" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                                            </ionic-selectable>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col size="12">
+                                        <ion-item>
+                                            <ion-label position="stacked">Otro</ion-label>
+                                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_tipo_usos2_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoUsosDos.cmb" [canSearch]="true" (onSearch)="buscarTipoUsosDos($event)" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                                            </ionic-selectable>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col size="12">
+                                        <ion-button [disabled]="enabled" class="centrado-22" color="danger" (click)="eliminarDatosConstruccion(item.construccion_id, item.prediourb_id)">
+                                            <ion-icon name="trash-outline" class="font-size-card-1"></ion-icon> Eliminar
+                                        </ion-button>
+                                    </ion-col>
+
+                                </ion-row>
+                            </div>
+
+                        </div>
+                    </ion-radio-group>
+                </ion-list>
+
+
+                <div *ngFor="let item of catastroUrbanoForm.datos_adicionales; let idx = index;">
+                    <div *ngIf="item.checked && item.estado_logico !== 'deleted' ">
+                        <ion-text color="primario">
+                            <p class="bold-500">Estructura</p>
+                        </ion-text>
+
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Columnas</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_estructura_columna_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbColumnas.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Entrepiso</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_estructura_entrepiso_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbEntrepisos.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cubierta</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_estructura_cubierta_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCubiertas.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Vigas y Cadenas</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_estructura_vigascadenas_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbVigasCadenas.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Paredes</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_estructura_paredes_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbParedes.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item class="padding-bottom-10">
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Escaleras</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_estructura_escaleras_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbEscaleras.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+
+                        <ion-text color="primario">
+                            <p class="bold-500">Acabados</p>
+                        </ion-text>
+
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Pisos</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_pisos_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbPisos.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Revestimiento Exterior</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_revesexte_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbRevestimientoExterior.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Puertas</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_puertas_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbPuertas.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cubierta</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_cubierta_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCubiertasAcabados.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Ventanas</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_ventanas_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbVentanas.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Revestimiento Interior</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_revesinte_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbRevestimientoInterior.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Escaleras</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_escalera_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbEscalerasAcabado.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Tumbados</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_tumbados_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTumbado.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Closet</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_closet_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCloset.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item class="padding-bottom-10">
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cubre Ventanas</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_acabado_cubventana_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCubreVentana.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+
+                        <ion-text color="primario">
+                            <p class="bold-500">Instalaciones</p>
+                        </ion-text>
+
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Sanitarias</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_instalacion_sanitarias_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbSanitarias.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Eléctricas</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_instalacion_electricas_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbElectricas.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Indust.</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_instalacion_indust_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbIndustriales.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Etapa</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_instalacion_etapa_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbEtapas.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Baños</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_instalacion_banos_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbBanios.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Especiales</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_instalacion_especiales_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbEspeciales.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item class="padding-bottom-10">
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Conserv.</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_instalacion_conservacion_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbConservacion.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+
+                        <ion-text color="primario">
+                            <p class="bold-500">Datos Adicionales</p>
+                        </ion-text>
+
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Clasificación de Unidad</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_clasificacion_unidad_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbClasificacionUnidad.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx); ">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Condición Ocupación</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_condicion_ocupacion_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbCondicionOcupacion.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cant. Habitaciones</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" (change)="item.cant_habit = $event.target.value; isModifiedDetalle(idx);" value="{{item.cant_habit}}"> </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cant. Baños</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" (change)="item.cant_banos = $event.target.value; isModifiedDetalle(idx);" value="{{item.cant_banos}}"> </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cant. Celulares</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" (change)="item.cant_celulares = $event.target.value; isModifiedDetalle(idx);" value="{{item.cant_celulares}}"> </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Tipo Ocupantes</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_tipo_ocupantes_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoOcupantes.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Tipo Vivienda</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_tipo_vivienda_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoVivienda.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Valor Cultural</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_valor_cultural_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbValorCultural.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedDetalle(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cant. Dormitorios</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" (change)="item.cant_dormitorios = $event.target.value; isModifiedDetalle(idx);" value="{{item.cant_dormitorios}}"> </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Cant. Teléfonos</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{item.cant_telef}}" (change)="item.cant_telef = $event.target.value; isModifiedDetalle(idx);"> </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="stacked" color="secundario" class="paddiing-bottom-13">Num. Habitantes</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{item.num_habitantes}}" (change)="item.num_habitantes = $event.target.value; isModifiedDetalle(idx);"> </ion-input>
+                        </ion-item>
+                    </div>
+                </div>
+                <ion-button [disabled]="enabled" class="margin-bottom-25 centrado-2-button" size="default" color="green" (click)="grabarConstruccion()"> Grabar Construcción </ion-button>
+
+                <ion-text color="primario">
+                    <p class="bold-500">Tipo de Obras y Mejoras al Predio</p>
+                </ion-text>
+
+                <ion-card-content class="border-all" *ngFor="let item of catastroUrbanoForm.tipo_mejora; let idx = index;">
+                    <div *ngIf="item.estado_logico !== 'deleted'">
+                        <ion-item-divider class="border-item-22">
+                            <ion-label>
+
+                            </ion-label>
+                        </ion-item-divider>
+                        <ion-item>
+                            <ion-label position="stacked">Mejoras</ion-label>
+                            <ionic-selectable (disabled)="enabled" class="padding-left-5" [(ngModel)]="item.cmb_tipo_mejoras_id.selected" itemValueField="id" itemTextField="_name" [items]="combos.cmbTipoMejoras.cmb" [canSearch]="true" (onChange)="portChange($event); isModifiedTipoMejora(idx);">
+                            </ionic-selectable>
+                        </ion-item>
+                        <ion-item>
+                            <ion-button color="peligro" slot="end" class="margin-top-25 margin-left-10 " (click)="eliminarTipoMejora(item.id, idx)">
+                                <ion-icon name="close"></ion-icon>
+                            </ion-button>
+                            <ion-label position="stacked">Cantidad</ion-label>
+                            <ion-input [disabled]="enabled" type="number" onkeydown="return event.keyCode !== 69" value="{{ item.cantidad }}" (change)="item.cantidad = $event.target.value; isModifiedTipoMejora(idx);"> </ion-input>
+                        </ion-item>
+                    </div>
+                </ion-card-content>
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="6">
+                            <ion-button [disabled]="enabled" expand="block" color="blueone" (click)="agregarTipoMejora(catastroUrbanoForm.informacion_basica.clave)">Agregar</ion-button>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-button [disabled]="enabled" class="text-gray" expand="block" color="green" (click)="grabarTipoMejora()">Grabar Tipo M.</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+            </app-expandable>
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN CONSTRUCCION -->
+
+
+    <!-- FOTOS -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(6)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Fotos
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[6].expanded">
+                <ion-text color="primario">
+                    <p class="bold-500 top-10">Fotos del Predio</p>
+                </ion-text>
+
+                <ion-item class="border-item-2 ">
+                    <ion-label class="espacio-label" position="stacked"> Agregar Croquis </ion-label>
+                    <ion-img [src]="catastroUrbanoForm.fotografia.url_foto_croquis"></ion-img>
+                </ion-item>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-button [disabled]="enabled" expand="block" color="blueone" (click)="selectImage('croquis')">Selec. Archivo</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-item class="border-item-2 ">
+                    <ion-label class="espacio-label" position="stacked">  Agregar Foto del Predio </ion-label>
+                    <ion-img [src]="catastroUrbanoForm.fotografia.url_foto_predio"></ion-img>
+                </ion-item>
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-button [disabled]="enabled" expand="block" color="blueone" (click)="selectImage('predio')">Selec. Archivo</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <ion-button [disabled]="enabled" class="margin-bottom-25 centrado-2-button" size="default" color="green" (click)="grabarFotos()"> Grabar Fotos </ion-button>
+            </app-expandable>
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN FOTOS //cambio-->
+
+
+    <!-- DATOS ADICIONALES -->
+    <ion-card class="margin-card">
+        <ion-card-header (click)="expandItem(7)" class="fondo-degradado">
+            <ion-card-title class="font-size-card">Otros Datos
+                <ion-icon name="chevron-forward" class="alignright"></ion-icon>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <app-expandable expandHeight="auto" [expanded]="listaTarjetas[7].expanded">
+                <ion-item class="padding-bottom-10">
+                    <ion-label position="stacked">Observaciones</ion-label>
+                    <ion-textarea [disabled]="enabled" type="text" placeholder="Observaciones" value="{{ catastroUrbanoForm.informacion_basica.observaciones }}" (change)="catastroUrbanoForm.informacion_basica.observaciones = $event.target.value"></ion-textarea>
+                </ion-item>
+                <ion-button [disabled]="enabled" class="margin-bottom-25 centrado-2-button" size="default" color="green" (click)="grabarOtrosDatos()"> Grabar Otros Datos </ion-button>
+
+            </app-expandable>
+
+        </ion-card-content>
+    </ion-card>
+    <!-- FIN DATOS ADICIONALES -->
+
+
+
+</ion-content>

@@ -1,0 +1,175 @@
+<!-- Back button -->
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="regresar()">
+                <ion-icon slot="start" name="arrow-back"></ion-icon>
+                <ion-label>Regresar</ion-label>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<!-- Cards Expandables -->
+
+<!-- CONSTRUCCION -->
+<ion-content>
+    <ion-card class="margin-card">
+        <ion-card-header>
+            <ion-icon name="add-circle" class="font-size-card-3 alignleft"></ion-icon>
+            <ion-card-title class="font-size-card">Nueva Construcción
+
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+            <div>
+                <div>
+
+                    <ion-row>
+
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Bloque</ion-label>
+                                <ion-input [(ngModel)]="construccion.bloque" placeholder="01" type="number" (change)="construccion.bloque = retornarDecena($event.target.value);"  (keypress)="onlyNumbers($event)"  maxlength="2"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Piso</ion-label>
+                                <ion-input [(ngModel)]="construccion.piso" placeholder="01" type="number" (change)="construccion.piso = retornarDecena($event.target.value);"  (keypress)="onlyNumbers($event)"  maxlength="2"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Depart.</ion-label>
+                                <ion-input  [(ngModel)]="construccion.departamento" placeholder="000" type="number" (change)="construccion.departamento = retornarCentena($event.target.value);"  (keypress)="onlyNumbers($event)"  maxlength="3"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Área Constr.</ion-label>
+                                <ion-input  [(ngModel)]="construccion.area_const" placeholder="00.0000" type="number"  (keypress)="onlyNumbers($event)"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Año Constr.</ion-label>
+                            <ion-input  [(ngModel)]="construccion.anio_const" placeholder="0000" type="number"  (keypress)="onlyNumbers($event)"  maxlength="4"></ion-input>
+
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item>
+                                <ion-label position="stacked">Uso del Piso</ion-label>
+                                <ionic-selectable class="padding-left-5" [(ngModel)]="cmbTipoUsos.selected" itemValueField="id" itemTextField="_name" [items]="cmbTipoUsos.cmb" [canSearch]="true" (onSearch)="buscarTipoUsos($event)" (onChange)="portChange($event);">
+                                </ionic-selectable>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item>
+                                <ion-label position="stacked">Otro</ion-label>
+                                <ionic-selectable class="padding-left-5" [(ngModel)]="cmbTipoUsosDos.selected" itemValueField="id" itemTextField="_name" [items]="cmbTipoUsosDos.cmb" [canSearch]="true" (onSearch)="buscarTipoUsosDos($event)" (onChange)="portChange($event);">
+                                </ionic-selectable>
+                            </ion-item>
+                        </ion-col>
+
+
+                    </ion-row>
+                </div>
+
+            </div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-button expand="block" color="danger" (click)="regresar()">Salir</ion-button>
+                    </ion-col>
+                    <ion-col size="6">
+                        <ion-button class="text-gray" expand="block" color="green" (click)="grabarConstruccion()">Grabar</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="margin-card">
+        <ion-card-header>
+            <ion-icon name="apps" class="font-size-card-3 alignleft"></ion-icon>
+            <ion-card-title class="font-size-card">Lista de Construcciones
+
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+        
+            
+
+            <ion-col size="12">
+                <ion-button class="text-gray" expand="block" (click)="abrirModal()" color="blueone">Actualizar Ficha Catastral</ion-button>
+            </ion-col>
+      
+            <div *ngFor="let item of catastroUrbanoForm.datos_adicionales; let idx = index">
+                <div *ngIf="item.estado_logico !== 'deleted'">
+                    <ion-item> <ion-label>Contruccion {{ item.construccion_id }}</ion-label></ion-item>
+                   
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Bloque</ion-label>
+                                <ion-input disabled type="text" value="{{item.bloque}}"> </ion-input>
+
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Piso</ion-label>
+                                <ion-input disabled type="text" value="{{item.piso}}"> </ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Depart.</ion-label>
+                                <ion-input disabled type="text" value="{{item.departamento}}"> </ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item>
+                                <ion-button (click)="grabarArea(idx)" color="green" slot="end" class="margin-top-22 margin-left-10 more-button">
+                                    <ion-icon name="save-outline"></ion-icon>
+                                </ion-button>
+                                <ion-label position="stacked">Área Constr.</ion-label>
+                                <ion-input  type="number" onkeydown="return event.keyCode !== 69" value="{{item.area_const}}"  (change)="item.area_const = $event.target.value;" > </ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label position="stacked">Año Constr.</ion-label>
+                                <ion-input disabled type="number" onkeydown="return event.keyCode !== 69" value="{{item.anio_const}}"> </ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item>
+                                <ion-label position="stacked">Uso del Piso</ion-label>
+                                <ionic-selectable disabled class="padding-left-5" [(ngModel)]="item.cmb_tipo_usos_id.selected" itemValueField="id" itemTextField="_name">
+                                </ionic-selectable>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-item>
+                                <ion-label position="stacked">Otro</ion-label>
+                                <ionic-selectable disabled class="padding-left-5" [(ngModel)]="item.cmb_tipo_usos2_id.selected" itemValueField="id" itemTextField="_name">
+                                </ionic-selectable>
+                            </ion-item>
+                        </ion-col>
+                     
+
+                    </ion-row>
+                </div>
+
+            </div>
+      
+  
+</ion-card-content>
+    </ion-card>
+</ion-content>
+
+<!-- FIN CONSTRUCCION -->

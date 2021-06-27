@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Animation, AnimationController } from '@ionic/angular';
 import { diccionario, LocalData } from '../../../_models';
-import { CombosService } from '../../../_services';
+import { SincronizarService } from '../../../_services';
 
 @Component({
   selector: 'app-sync-descarga',
@@ -19,12 +19,15 @@ export class SyncDescargaPage implements OnInit {
   public step: number = 1;
   public progressBar = 0;
   public syncOk:boolean = true;
-  public iteracion = 1 / 5; // 68;
+  public censado: number = 0;
+  public totalCenso: number = 68;
+  public iteracion = 1 / this.totalCenso;
+
   public listaSincronizado = [];
   private dbo: LocalData[] = diccionario;
   
   constructor(private animationCtrl: AnimationController,
-              private combosSV: CombosService) {
+              private combosSV: SincronizarService) {
 
    
    }
@@ -95,6 +98,7 @@ export class SyncDescargaPage implements OnInit {
   sicronizar() {
     this.listaSincronizado = [];
     this.progressBar = 0;
+    this.censado = 0;
     this.startLoad();
     this.step = 1.5;
     setTimeout(()=>{                     
@@ -109,46 +113,53 @@ export class SyncDescargaPage implements OnInit {
     // Filtramos las tablas que tienen api
      this.dbo.filter( c => c.api === true ).forEach( item => {
       
-     
-      this.combosSV.obtenerCombo(item.ruta, item.tablaBase).subscribe( data => {
- 
+      
+      this.combosSV.descargarDatos(item.ruta, item.tablaBase, item.esCombo ).subscribe( data => {
+          this.censado++;
           if(data === null) {
              // Avanzar la iteracion y poner mensaje de FALLO
              this.iterar(item._id, false, '');
              this.syncOk = false;
+             this.esFinalizado();
              return;
           }
           data.then( c => {
             this.iterar(item._id, true, '');
-
-            if ((this.progressBar * 100) === 100) {
-             
-              setTimeout(()=>{ 
-                this.step = 2.5;
-                setTimeout(()=>{ 
-                        if (this.syncOk) {
-                          this.step =  3;
-                        } 
-                        else {
-                          this.step =  4;
-                        }           
-                  
-             }, 500);                 
-             
-           }, 2000);
-            }
+            this.esFinalizado();
+           
           });
            // Avanzar la iteracion y poner mensaje de OK
         },
         error => {
           // Avanzar la iteracion y poner mensaje de FALLO
+          this.censado++;
           this.syncOk = false;
           this.iterar(item._id, false, '');
+          this.esFinalizado();
         });
     
  
    });
  
+ }
+
+ private esFinalizado() {
+  if ((this.progressBar * 100) > 99.9 ) {
+             
+    setTimeout(()=>{ 
+      this.step = 2.5;
+      setTimeout(()=>{ 
+              if (this.syncOk) {
+                this.step =  3;
+              } 
+              else {
+                this.step =  4;
+              }           
+        
+   }, 500);                 
+   
+ }, 2000);
+  }
  }
 
 
